@@ -1,0 +1,232 @@
+Adaptability|offence|4|true
+Aerilate|offence|6|true;normal;teraflying;type
+Aftermath|balance|4|true
+Air Lock|balance|3|true;doubles
+Analytic|speed|5|true
+Anger Point|physical|4|true
+Anger Shell|offence|9|true
+Arena Trap|balance|3|true;doubles
+Armor Tail|balance|9|true;doubles
+Aroma Veil|balance|6|true;doubles
+As One (Glastrier)|physical|8|true
+As One (Spectrier)|special|8|true
+Battle Armor|balance|3|true
+Beads of Ruin|special|9|true;doubles
+Beast Boost|offence|7|true
+Berserk|special|7|true
+Bulletproof|balance|6|true
+Cheek Pouch|heal|6|true;berry
+Chilling Neigh|physical|8|true
+Chlorophyll|speed|3|true
+Clear Body|balance|3|true
+Color Change|balance|3|true
+Comatose|balance|7|true
+Competitive|special|6|true
+Compound Eyes|balance|3|true;accuracy30
+Contrary|balance|5|true;ownstatlower;nostatraise
+Cotton Down|speed|8|true
+Cud Chew|balance|9|true;berry
+Cursed Body|balance|5|true
+Dancer|balance|7|true
+Dark Aura|offence|6|true;dark;teradark;type;doubles
+Dauntless Shield|defence|8|true
+Defiant|physical|5|true
+Delta Stream|weakness|6|true;teraflying;doubles
+Desolate Land|balance|6|true;terafire;fire;nowater;type;doubles;weather
+Download|offence|4|true
+Drizzle|balance|3|true;terawater;water;damprock25;type;nofire;doubles;weather
+Drought|balance|3|true;terafire;fire;heatrock25;type;nowater;doubles;weather
+Dry Skin|heal|4|true
+Earth Eater|heal|9|true;terarock;terafire;teraelectric;terapoison;terasteel
+Effect Spore|status|3|true
+Electric Surge|offence|7|true;teraelectric;electric;seedelectric;type;doubles
+Fairy Aura|offence|6|true;fairy;terafairy;type;doubles
+Filter|weakness|4|true
+Flame Body|status|3|true
+Flare Boost|special|5|true;flameorb85
+Flash Fire|balance|3|true;fire;terafire;terabug;terasteel;teragrass;teraice;type
+Fluffy|defence|7|true;terarock;terafire;terawater;teradragon
+Fur Coat|defence|6|true
+Galvanize|offence|7|true;normal;teraelectric;type
+Gluttony|balance|4|true;berry
+Good as Gold|balance|9|true
+Gooey|speed|6|true
+Gorilla Tactics|physical|8|true;gorilla
+Grass Pelt|defence|6|true
+Grassy Surge|heal|7|true;grass;teragrass;seedgrass;type;doubles
+Grim Neigh|special|8|true
+Guard Dog|physical|9|true
+Guts|physical|3|true;flameorb100
+Hadron Engine|special|9|true;electric;teraelectric;seedelectric;type;doubles
+Harvest|balance|5|true;berry
+Heatproof|balance|4|true;terabug;terasteel;teragrass;teraice
+Huge Power|physical|3|true
+Hustle|physical|3|true
+Hydration|balance|4|true
+Ice Body|heal|4|true
+Ice Scales|defence|8|true
+Illusion|balance|5|true
+Imposter|balance|5|true;imposter
+Infiltrator|offence|5|true
+Innards Out|balance|7|true
+Insomnia|balance|3|true
+Inner Focus|balance|3|true
+Intimidate|balance|3|true;doubles
+Intrepid Sword|physical|8|true
+Iron Barbs|defence|5|true
+Iron Fist|physical|4|true;punching
+Justified|physical|5|true;teraghost;terapsychic;terafighting;teradark;terafairy
+Leaf Guard|balance|4|true
+Levitate|balance|3|true;terarock;terafire;teraelectric;terapoison;terasteel
+Libero|balance|8|true
+Lightning Rod|special|3|true;teraflying;terawater;doubles
+Limber|balance|3|true
+Liquid Ooze|balance|3|true
+Liquid Voice|balance|7|true;terawater;sound
+Long Reach|balance|7|true;contact
+Magic Bounce|balance|5|true
+Magic Guard|balance|4|true;magicguard
+Magician|balance|6|true;quickuse
+Magnet Pull|balance|3|true
+Marvel Scale|special|3|true;flameorb85
+Mega Launcher|offence|6|true;pulse
+Merciless|balance|7|true
+Mimicry|balance|8|true
+Mind's Eye|balance|9|true;normal;fighting;teranormal;terafighting;type
+Mirror Armor|balance|8|true
+Misty Surge|status|7|true;seedmisty;nodragon;doubles
+Mold Breaker|balance|4|true
+Moody|balance|5|true
+Motor Drive|speed|4|true;teraflying;terawater
+Mountaineer|balance|0|true
+Moxie|physical|5|true
+Multiscale|balance|5|true
+Mummy|balance|5|true
+Mycelium Might|speed|9|true;status
+Natural Cure|balance|3|true
+Neuroforce|offence|7|true
+Neutralizing Gas|balance|8|true
+No Guard|balance|4|true;accuracy70
+Oblivious|balance|3|true
+Opportunist|balance|9|true
+Orichalcum Pulse|physical|9|true;fire;terafire;type;nowater;doubles;weather
+Overcoat|balance|5|true
+Parental Bond|offence|6|true;ownstatraise
+Perish Body|balance|8|true
+Persistent|balance|0|true;persistent
+Pickpocket|balance|5|true;quickuse
+Pickup|balance|3|true;quickuse
+Pixilate|offence|6|true;normal;terafairy;type
+Poison Heal|heal|4|true;toxicorb100
+Poison Point|status|3|true
+Poison Touch|status|5|true;contact
+Prankster|speed|5|true;status
+Pressure|balance|3|true;doubles
+Primordial Sea|balance|6|true;terawater;water;nofire;type;doubles
+Prism Armor|weakness|7|true
+Protean|balance|6|true
+Protosynthesis|balance|9|true;booster
+Psychic Surge|offence|7|true;psychic;terapsychic;seedpsychic;type;doubles
+Punk Rock|special|8|true;sound
+Pure Power|physical|3|true
+Purifying Salt|balance|9|true;teraghost;terapsychic
+Quark Drive|balance|9|true;booster
+Quick Draw|speed|8|true
+Quick Feet|speed|4|true;toxicorb85
+Rain Dish|heal|3|true
+Rattled|speed|5|true;teraghost;teragrass;terapsychic;teradark
+Reckless|offence|4|true;recoil
+Refrigerate|offence|6|true;normal;teraice;type
+Regenerator|heal|5|true
+Rebound|balance|0|true
+Ripen|balance|8|true;berry
+Rock Head|offence|3|true;recoil
+Rough Skin|defence|3|true
+Sand Force|offence|5|true;teraground;terarock;terasteel;ground;rock;steel;type
+Sand Rush|speed|5|true
+Sand Spit|balance|8|true;teraground;terarock;terasteel;doubles;weather
+Sand Stream|balance|3|true;teraground;terarock;terasteel;doubles;weather
+Sand Veil|balance|3|true
+Sap Sipper|physical|5|true;teraground;terarock;terawater
+Scrappy|balance|4|true;normal;fighting;teranormal;terafighting;type
+Screen Cleaner|balance|8|true;doubles
+Seed Sower|heal|9|true;grass;teragrass;seedgrass;type;doubles
+Serene Grace|balance|3|true
+Shadow Shield|balance|7|true
+Shadow Tag|balance|3|true;doubles
+Sharpness|offence|9|true;slicing
+Shed Skin|balance|3|true
+Sheer Force|offence|5|true;lifeorb60
+Shield Dust|balance|3|true
+Simple|balance|4|true;ownstatraise
+Skill Link|offence|4|true;multihit
+Slush Rush|speed|7|true
+Sniper|offence|4|true;crit
+Snow Cloak|balance|4|true
+Snow Warning|balance|4|true;teraice;doubles;weather
+Solar Power|special|4|true
+Solid Rock|weakness|4|true
+Soul-Heart|special|7|true
+Soundproof|balance|3|true
+Speed Boost|speed|3|true
+Stakeout|offence|7|true
+Stamina|defence|7|true
+Static|status|3|true
+Steam Engine|speed|8|true;terawater;teradragon
+Stench|balance|3|true
+Sticky Hold|balance|3|true
+Storm Drain|special|4|true;teraground;terarock;terafire;doubles
+Strong Jaw|offence|6|true;biting
+Sturdy|balance|3|true
+Suction Cups|balance|3|true
+Super Luck|offence|4|true;crit
+Supersweet Syrup|balance|9|true;accuracy25;doubles
+Supreme Overlord|offence|9|true
+Surge Surfer|speed|7|true
+Swift Swim|speed|3|true
+Sword of Ruin|physical|9|true;doubles
+Synchronize|status|3|true
+Tablets of Ruin|defence|9|true;doubles
+Technician|offence|4|true;power60
+Teravolt|balance|5|true
+Thermal Exchange|physical|9|true;terabug;terasteel;teragrass;teraice;terarock;terafire;terawater;teradragon
+Thick Fat|balance|3|true;teraflying;teraground;terabug;terasteel;teragrass;teraice;teradragon
+Tinted Lens|offence|4|true
+Tough Claws|offence|6|true;contact
+Toxic Boost|physical|5|true;toxicorb100
+Toxic Chain|status|9|true
+Toxic Debris|status|9|true
+Trace|balance|3|true
+Triage|balance|7|true;triage
+Turboblaze|balance|5|true
+Unaware|balance|4|true
+Unburden|speed|4|true;quickuse
+Unnerve|balance|5|true;doubles
+Unseen Fist|offence|8|true
+Vessel of Ruin|defence|9|true;doubles
+Victory Star|balance|5|true;accuracy20;doubles
+Volt Absorb|heal|3|true;terawater;teraflying
+Wandering Spirit|balance|8|true
+Water Absorb|heal|3|true;terarock;teraground;terafire
+Water Bubble|balance|7|true;water;terawater;type
+Water Compaction|defence|7|true;terawater;teragrass;teradragon
+Water Veil|balance|3|true
+Weak Armor|speed|5|true
+Well-Baked Body|defence|9|true
+Wind Rider|physical|9|true
+Wonder Guard|weakness|3|true
+Wonder Skin|balance|5|true
+Battery|special|7|false;doubles
+Costar|balance|9|false;doubles
+Curious Medicine|balance|8|false;doubles
+Flower Gift|physical|4|false;doubles
+Flower Veil|balance|6|false;doubles;teragrass
+Friend Guard|defence|5|false;doubles
+Healer|balance|5|false;doubles
+Hospitality|balance|9|false;doubles
+Power Spot|balance|8|false;doubles
+Propeller Tail|balance|8|false;doubles
+Receiver|balance|7|false;doubles
+Steely Spirit|offence|8|false;doubles;steel;terasteel
+Symbiosis|balance|7|false;doubles
+Telepathy|balance|5|false;doubles
