@@ -89,7 +89,7 @@ Magic Guard|balance|4|true;magicguard
 Magician|balance|6|true;quickuse
 Magnet Pull|balance|3|true
 Marvel Scale|special|3|true;flameorb85
-Mega Launcher|offence|6|true;pulse
+Mega Launcher|special|6|true;pulse
 Merciless|balance|7|true
 Mimicry|balance|8|true
 Mind's Eye|balance|9|true;normal;fighting;teranormal;terafighting;type
@@ -103,7 +103,7 @@ Moxie|physical|5|true
 Multiscale|balance|5|true
 Mummy|balance|5|true
 Mycelium Might|speed|9|true;status
-Natural Cure|balance|3|true
+Natural Cure|balance|3|true;switch
 Neuroforce|offence|7|true
 Neutralizing Gas|balance|8|true
 No Guard|balance|4|true;accuracy70
@@ -119,7 +119,7 @@ Pickup|balance|3|true;quickuse
 Pixilate|offence|6|true;normal;terafairy;type
 Poison Heal|heal|4|true;toxicorb100
 Poison Point|status|3|true
-Poison Touch|status|5|true;contact
+Poison Touch|status|5|true;contact;touching
 Prankster|speed|5|true;status
 Pressure|balance|3|true;doubles
 Primordial Sea|balance|6|true;terawater;water;nofire;type;doubles
@@ -137,7 +137,7 @@ Rain Dish|heal|3|true
 Rattled|speed|5|true;teraghost;teragrass;terapsychic;teradark
 Reckless|offence|4|true;recoil
 Refrigerate|offence|6|true;normal;teraice;type
-Regenerator|heal|5|true
+Regenerator|heal|5|true;switch
 Rebound|balance|0|true
 Ripen|balance|8|true;berry
 Rock Head|offence|3|true;recoil
@@ -194,7 +194,7 @@ Thick Fat|balance|3|true;teraflying;teraground;terabug;terasteel;teragrass;terai
 Tinted Lens|offence|4|true
 Tough Claws|offence|6|true;contact
 Toxic Boost|physical|5|true;toxicorb100
-Toxic Chain|status|9|true
+Toxic Chain|status|9|true;touching
 Toxic Debris|status|9|true
 Trace|balance|3|true
 Triage|balance|7|true;triage

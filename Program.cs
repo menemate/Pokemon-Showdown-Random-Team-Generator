@@ -121,24 +121,30 @@ public class HelloWorld
 		List<Type> includeMonTypes = new List<Type>
 		{
 			Type.Normal, Type.Fighting, Type.Flying, Type.Poison,
-	Type.Ground, Type.Rock, Type.Bug, Type.Ghost,
-	Type.Steel, Type.Fire, Type.Water, Type.Grass,
-	Type.Electric, Type.Psychic, Type.Ice, Type.Dragon,
-	Type.Dark, Type.Fairy, Type.Nothing
+			Type.Ground, Type.Rock, Type.Bug, Type.Ghost,
+			Type.Steel, Type.Fire, Type.Water, Type.Grass,
+			Type.Electric, Type.Psychic, Type.Ice, Type.Dragon,
+			Type.Dark, Type.Fairy, Type.Nothing
 		};
 		List<Type> includeMoveTypes = new List<Type>
 		{
 			Type.Normal, Type.Fighting, Type.Flying, Type.Poison,
-	Type.Ground, Type.Rock, Type.Bug, Type.Ghost,
-	Type.Steel, Type.Fire, Type.Water, Type.Grass,
-	Type.Electric, Type.Psychic, Type.Ice, Type.Dragon,
-	Type.Dark, Type.Fairy, Type.Nothing
+			Type.Ground, Type.Rock, Type.Bug, Type.Ghost,
+			Type.Steel, Type.Fire, Type.Water, Type.Grass,
+			Type.Electric, Type.Psychic, Type.Ice, Type.Dragon,
+			Type.Dark, Type.Fairy, Type.Nothing
 		};
 		List<int> includeMonGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
 		List<int> includeMoveGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
 		List<int> includeAbilGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
 
-		int[] includeMonBST	= {490, 500};
+		int[] includeMonBST	= {0, 1000};
+
+/* "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" */
+		List<string> includeMonName		= new List<string>{ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+		List<string> includeAbilName	= new List<string>{ "j", "k", "r"};
+		List<string> includeMoveName	= new List<string>{ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+
 
 		var lines = new List<string>();
 
@@ -394,6 +400,10 @@ public class HelloWorld
 						pokemon.rate = 0;
 
 					if(includeMonBST[0] > pokemon.bst || includeMonBST[1] < pokemon.bst)
+						pokemon.rate = 0;
+
+					bool textMatches	= includeMonName.Any(p => pokemon.name.StartsWith(p, StringComparison.OrdinalIgnoreCase));
+					if(!textMatches)
 						pokemon.rate = 0;
 				}
 			}
@@ -1107,6 +1117,10 @@ public class HelloWorld
 					bool genMatches = includeAbilGens.Any(gen => gen == abil.generation);
 					if(!genMatches)
 						abil.rate = 0;
+
+					bool textMatches	= includeAbilName.Any(p => abil.name.StartsWith(p, StringComparison.OrdinalIgnoreCase));
+					if(!textMatches)
+						abil.rate = 0;
 				}
 
 				switch(randomPokemon.stats)
@@ -1415,6 +1429,33 @@ public class HelloWorld
 					move.rate = 100;
 					bool isUsed = false;
 
+					//	Change move types.
+					if (randomItem.props.Contains("plate") && move.name == "Judgment")
+					{
+						switch (randomItem.name)
+						{
+							case "Draco Plate":	move.type = Type.Dragon;	break;
+							case "Dread Plate":	move.type = Type.Dark;	break;
+							case "Earth Plate":	move.type = Type.Ground;	break;
+							case "Fist Plate":	move.type = Type.Fighting;	break;
+							case "Flame Plate":	move.type = Type.Fire;	break;
+							case "Icicle Plate":	move.type = Type.Ice;	break;
+							case "Insect Plate":	move.type = Type.Bug;	break;
+							case "Iron Plate":	move.type = Type.Steel;	break;
+							case "Meadow Plate":	move.type = Type.Grass;	break;
+							case "Mind Plate":	move.type = Type.Psychic;	break;
+							case "Pixie Plate":	move.type = Type.Fairy;	break;
+							case "Sky Plate":	move.type = Type.Flying;	break;
+							case "Splash Plate":	move.type = Type.Water;	break;
+							case "Spooky Plate":	move.type = Type.Ghost;	break;
+							case "Stone Plate":	move.type = Type.Rock;	break;
+							case "Toxic Plate":	move.type = Type.Poison;	break;
+							case "Zap Plate":	move.type = Type.Electric;	break;
+						}
+					}
+					if(move.name == "Revelation Dance")
+						move.type = randomPokemon.type1;
+
 					if (restrictMoves)
 					{
 						bool typeMatches = includeMoveTypes.Any(type => type == move.type);
@@ -1423,6 +1464,10 @@ public class HelloWorld
 
 						bool genMatches = includeMoveGens.Any(gen => gen == move.generation);
 						if(!genMatches)
+							move.rate = 0;
+
+						bool textMatches	= includeMoveName.Any(p => move.name.StartsWith(p, StringComparison.OrdinalIgnoreCase));
+						if(!textMatches)
 							move.rate = 0;
 					}
 					
@@ -1443,7 +1488,7 @@ public class HelloWorld
 					if(move.category == 0 || move.category == 1)
 					{
 						if(pickedMoves.Any(picked => (picked.category == 0 || picked.category == 1) && picked.type == move.type))
-							move.rate *= 0.1;
+							move.rate *= 0.025;
 					}
 
 					//	Early move rates based on pokemon.
@@ -1673,7 +1718,7 @@ public class HelloWorld
 					if(randomAbility.name == "Adaptability")
 						isAdapt = 3;
 					if(randomPokemon.type1 == move.type || randomPokemon.type2 == move.type)
-						move.rate *= 10 * isAdapt;
+						move.rate *= 40 * isAdapt;
 
 					// Guaranteed damaging move if the previously chosen 3 moves were status moves.
 					if(!pickedMoves.Any(pick => pick.category == 0 || pick.category == 1) && j == 3)
@@ -1747,6 +1792,38 @@ public class HelloWorld
 						}
 					}
 
+					//	Probability moves handling.
+					double prob = 0;
+					if(move.props.Any(p => p.Contains("prob")))
+					{
+						string moveProb = move.props.First(p => p.Contains("prob"));
+						prob = Convert.ToDouble(moveProb.Substring(moveProb.IndexOf("prob") + "prob".Length));
+					}
+					if(randomAbility.name == "Serene Grace")
+					{
+						if(prob > 0)
+						{
+							move.rate *= prob;
+							if(Probability.Roll(Convert.ToInt32(Math.Floor(prob * 2))))
+								isUsed = true;
+						}
+						else if(move.category != 2)
+							move.rate = 0;
+						else if(move.category == 2)
+							move.rate *= 10;
+							
+					}
+					if(randomAbility.name == "Sheer Force")
+					{
+						double boost = 50 - prob;
+						if(prob > 0 && prob < 50 && move.power > 60)
+							move.rate *= boost;
+						else if(move.category != 2)
+							move.rate = 0;
+						else if(move.category == 2)
+							move.rate *= 10;
+					}
+
 					//	Status moves and weak moves are removed for Choice items.
 					if(randomItem.props.Contains("choiced"))
 					{
@@ -1756,7 +1833,7 @@ public class HelloWorld
 								if(move.category != 0 && !move.props.Contains("choiced"))
 									move.rate *= 0;
 								if(move.props.Contains("choiced"))
-									move.rate *= 5;
+									move.rate *= 10;
 								if(move.power < 40)
 									move.rate *= 0;
 							break;
@@ -1764,7 +1841,7 @@ public class HelloWorld
 								if(move.category != 1 && !move.props.Contains("choiced"))
 									move.rate *= 0;
 								if(move.props.Contains("choiced"))
-									move.rate *= 5;
+									move.rate *= 10;
 								if(move.power < 40 && move.type != Type.Water)
 									move.rate *= 0;
 							break;
@@ -1772,7 +1849,7 @@ public class HelloWorld
 								if(move.category == 2 && !move.props.Contains("choiced"))
 									move.rate *= 0;
 								if(move.props.Contains("choiced"))
-									move.rate *= 5;
+									move.rate *= 10;
 								if(move.power <= 60 && move.type != Type.Steel)
 									move.rate *= 0;
 								if(move.props.Contains("negprio") || move.props.Contains("posprio") || move.name == "Gyro Ball")
@@ -1780,6 +1857,9 @@ public class HelloWorld
 							break;
 						}
 					}
+
+					if(move.props.Contains("choiced") && !randomItem.props.Contains("choiced"))
+						move.rate = 0;
 
 					//	Handling for speed.
 					if(move.name == "Electro Ball")
@@ -1866,6 +1946,11 @@ public class HelloWorld
 					if(pickedMoves.Any(m => m.props.Contains("speed")) && move.props.Contains("speed"))
 						move.rate = 0;
 
+					if(pickedMoves.Any(m => m.props.Contains("physical")) && move.category == 1)
+						move.rate = 0;
+					if(pickedMoves.Any(m => m.props.Contains("special")) && move.category == 0)
+						move.rate = 0;
+
 					//	This is mainly for Contrary.
 					if(randomAbility.props.Contains("ownstatlower"))
 					{
@@ -1890,15 +1975,15 @@ public class HelloWorld
 						move.rate *= 6;
 					//	Punching abilities and items.
 					if((randomAbility.props.Contains("punching") || randomItem.props.Contains("punching")) && move.props.Contains("punching")){
-						move.rate *= 10; isUsed = true;}
+						move.rate *= 40; isUsed = true;}
 					//	Punk Rock, Liquid Voice, Throat Spray
 					if(randomAbility.props.Contains("sound") && randomAbility.stats == "special" && move.props.Contains("sound") && move.category != 2){
-						move.rate *= 20; isUsed = true;}
+						move.rate *= 40; isUsed = true;}
 					if(randomAbility.props.Contains("sound") && randomAbility.stats == "balance" && move.props.Contains("sound") && move.category != 2){
 						move.rate *= 10; isUsed = true;}
 					if(randomItem.props.Contains("sound") && move.props.Contains("sound"))
 					{
-						move.rate *= 20; isUsed = true;
+						move.rate *= 40; isUsed = true;
 					}
 					//	Magic Guard boosted moves.
 					if(randomAbility.props.Contains("magicguard") && (move.props.Contains("recoil") || move.props.Contains("magicguard"))){
@@ -1906,9 +1991,11 @@ public class HelloWorld
 					//	Recoil boost abilities.
 					if(randomAbility.props.Contains("recoil") && move.props.Contains("recoil")){
 						move.rate *= 10; isUsed = true;}
+					if(randomAbility.props.Contains("switch") && move.props.Contains("switch")){
+						move.rate *= 10; isUsed = true;}
 					//	Stat raising moves boost for Parental Bond and Simple.
 					if (randomAbility.props.Contains("ownstatraise")){
-						if(move.props.Contains("ownstatraise")){	//	PB.
+						if(move.props.Contains("ownstatraise")){	
 							move.rate *= 20; isUsed = true;
 						}
 						if(randomAbility.stats == "balance")		//	Simple.
@@ -1916,21 +2003,30 @@ public class HelloWorld
 							if(move.props.Contains("offence") || move.props.Contains("physical") || move.props.Contains("special") || move.props.Contains("speed") || move.props.Contains("defence"))
 								{move.rate *= 10; isUsed = true;}
 						}
+						else										//	PB.
+						{
+							if(move.props.Contains("multihit") || move.props.Contains("noguard"))
+								move.rate = 0;
+						}
 					}
-					//	Boost multihit moves for Skill Link and Loaded Dice
+					//	Boost multihit moves for Skill Link and Loaded Dice, or touching abilities.
 					if((randomAbility.props.Contains("multihit") || randomItem.props.Contains("multihit")) && move.props.Contains("multihit")){
 						move.rate *= 30; isUsed = true;}
+					if(randomAbility.props.Contains("touching") && move.props.Contains("multihit")){
+						move.rate *= 15; isUsed = true;}
 					//	Boost moves for abilities and/or items for crit, biting, pulse, technician and triage.
 					if((randomAbility.props.Contains("crit") || randomItem.props.Contains("crit")) && move.props.Contains("crit")){
 						move.rate *= 10; isUsed = true;}
 					if(randomAbility.props.Contains("biting") && move.props.Contains("biting")){
-						move.rate *= 10; isUsed = true;}
+						move.rate *= 40; isUsed = true;}
 					if(randomAbility.props.Contains("slicing") && move.props.Contains("slicing")){
-						move.rate *= 10; isUsed = true;}
+						move.rate *= 40; isUsed = true;}
 					if(randomAbility.props.Contains("pulse") && move.props.Contains("pulse")){
-						move.rate *= 25; isUsed = true;}
+						move.rate *= 40; isUsed = true;}
 					if(randomAbility.props.Contains("power60") && move.power <= 60 && move.power >= 15){
 						move.rate *= 10; isUsed = true;}
+					if(randomAbility.props.Contains("power60") && move.power > 60 && move.power < 90){
+						move.rate *= 0;	}
 					if(randomAbility.props.Contains("triage") && move.props.Contains("triage")){
 						move.rate *= 10; isUsed = true;}
 					if(!randomAbility.props.Contains("triage") && pickedMoves.Any(p => p.props.Contains("triage")) && move.props.Contains("triage"))
@@ -1999,7 +2095,7 @@ public class HelloWorld
 
 					//	Tailwind Wind Rider
 					if(randomAbility.name == "Wind Rider" && move.name == "Tailwind")
-						move.rate *= 40;
+						move.rate *= 120;
 
 					//	Terrain boosted moves during terrain, otherwise reduce them.
 					if(move.props.Contains("terrain"))
@@ -2223,8 +2319,8 @@ public class HelloWorld
 			int r = rnd.Next(3,8);
 			switch (r)
 			{
-				case 6:	randomNick = string.Concat(randomPokemon.name.AsSpan(0,3), randomNick.AsSpan(randomNick.Length - 3, 3)); break;
-				case 7:	randomNick = string.Concat(randomNick.AsSpan(0,3), randomPokemon.name.AsSpan(randomPokemon.name.Length - 3, 3)); break;
+				case 6:	randomNick = string.Concat(randomPokemon.name.AsSpan(0,3), randomNick.AsSpan(3, randomNick.Length - 3)); break;
+				case 7:	randomNick = string.Concat(randomNick.AsSpan(0,randomNick.Length - 3), randomPokemon.name.AsSpan(randomPokemon.name.Length - 3, 3)); break;
 			}
 		
 			lines.Add(randomNick + " (" + randomPokemon.name + ") @ " + randomItem.name);

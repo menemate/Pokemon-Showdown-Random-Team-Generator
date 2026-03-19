@@ -39,7 +39,7 @@ Leftovers|balance|200|true
 Leppa Berry|balance|20|true;berry
 Life Orb|offence|150|true
 Light Ball|offence|100|false;
-Loaded Dice|physical|100|true;multihit
+Loaded Dice|physical|80|true;multihit
 Lum Berry|balance|100|true;berry
 Mago Berry|balance|65|true;berry
 Maranga Berry|defence|65|true;berry;statraise;quickuse
