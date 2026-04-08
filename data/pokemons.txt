@@ -1,5 +1,5 @@
 abomasnow|Grass|Ice|any|4|494|true|none
-absol|Dark|Nothing|phys|3|465|true|none
+absol|Dark|Nothing|phys|3|465|true|frail
 accelgor|Bug|Nothing|spec|5|495|true|fast
 aegislash|Steel|Ghost|tank|6|500|true|none
 aerodactyl|Rock|Flying|phys|1|515|true|fast
@@ -83,7 +83,7 @@ cetitan|Ice|Nothing|phys|9|521|true|heavy
 chandelure|Ghost|Fire|spec|5|520|true|none
 chansey|Normal|Nothing|tank|1|450|false|slow
 charizard|Fire|Flying|spec|1|534|true|none
-chatot|Normal|Flying|spec|4|411|true|none
+chatot|Normal|Flying|spec|4|411|true|frail
 cherrim|Grass|Nothing|spec|4|450|true|none
 chesnaught|Grass|Fighting|phys|6|530|true|none
 chi-yu|Dark|Fire|spec|9|570|true|none
@@ -123,7 +123,7 @@ decidueye-hisui|Grass|Fighting|any|7|530|true|none
 decidueye|Grass|Ghost|mixed|7|530|true|none
 dedenne|Electric|Fairy|spec|6|431|true|none
 delcatty|Normal|Nothing|mixed|3|400|true|none
-delibird|Ice|Flying|mixed|2|330|true|none
+delibird|Ice|Flying|mixed|2|330|true|frail
 delphox|Fire|Psychic|spec|6|534|true|none
 deoxys|Psychic|Nothing|mixed|3|600|true|fast
 dewgong|Water|Ice|any|1|475|true|none
@@ -132,7 +132,7 @@ dialga|Steel|Dragon|spec|4|680|true|none
 diancie|Rock|Fairy|tank|6|600|true|slow
 diggersby|Normal|Ground|any|6|423|true|none
 dipplin|Grass|Dragon|any|9|485|false|slow
-ditto|Normal|Nothing|any|1|288|true|slow
+ditto|Normal|Nothing|any|1|288|true|frail
 dodrio|Normal|Flying|phys|1|470|true|none
 dondozo|Water|Nothing|tank|9|530|true|phys
 donphan|Ground|Nothing|phys|2|500|true|slow
@@ -150,8 +150,8 @@ druddigon|Dragon|Nothing|phys|5|485|true|slow
 dubwool|Normal|Nothing|tank|8|490|true|phys
 dunsparce|Normal|Nothing|any|2|415|false|slow
 dudunsparce|Normal|Nothing|any|9|520|true|none
-dugtrio|Ground|Nothing|phys|1|425|true|none
-dugtrio-alola|Ground|Steel|phys|7|425|true|none
+dugtrio|Ground|Nothing|phys|1|425|true|frail
+dugtrio-alola|Ground|Steel|phys|7|425|true|frail
 duraludon|Steel|Dragon|spec|8|535|false|none
 durant|Bug|Steel|phys|5|484|true|none
 dusclops|Ghost|Nothing|tank|3|455|false|slow
@@ -178,7 +178,7 @@ exeggutor|Grass|Psychic|spec|1|530|true|none
 exeggutor-alola|Grass|Dragon|any|7|530|true|heavy
 exploud|Normal|Nothing|any|3|490|true|none
 falinks|Fighting|Nothing|phys|8|470|true|none
-farfetch'd|Normal|Flying|phys|1|377|true|none
+farfetch'd|Normal|Flying|phys|1|377|true|frail
 girafarig|Normal|Psychic|any|1|455|false|none
 farigiraf|Normal|Psychic|any|9|520|true|none
 fearow|Normal|Flying|phys|1|442|true|none
@@ -268,7 +268,7 @@ illumise|Bug|Nothing|spec|3|430|true|none
 incineroar|Fire|Dark|phys|7|530|true|none
 indeedee|Psychic|Normal|spec|8|475|true|none
 infernape|Fire|Fighting|mixed|4|534|true|none
-inteleon|Water|Nothing|mixed|8|530|true|none
+inteleon|Water|Nothing|spec|8|530|true|none
 iron boulder|Rock|Psychic|phys|9|590|true|none
 iron bundle|Ice|Water|spec|9|570|true|fast
 iron crown|Steel|Psychic|spec|9|590|true|none
@@ -327,7 +327,7 @@ lumineon|Water|Nothing|mixed|4|460|true|none
 lunala|Psychic|Ghost|mixed|7|680|true|none
 lunatone|Rock|Psychic|spec|3|460|true|none
 lurantis|Grass|Nothing|phys|7|480|true|slow
-luvdisc|Water|Nothing|mixed|3|330|true|none
+luvdisc|Water|Nothing|mixed|3|330|true|frail
 luxray|Electric|Nothing|phys|4|523|true|none
 lycanroc|Rock|Nothing|phys|7|487|true|none
 mabosstiff|Dark|Nothing|phys|9|505|true|none
@@ -372,7 +372,7 @@ minun|Electric|Nothing|spec|3|405|true|none
 miraidon|Electric|Dragon|spec|9|670|true|fast
 misdreavus|Ghost|Nothing|spec|2|435|false|none
 mismagius|Ghost|Nothing|spec|4|495|true|none
-MissingNo.|Normal|Normal|phys|1|210|true|slow
+MissingNo.|Normal|Normal|phys|1|210|true|frail
 moltres|Fire|Flying|spec|1|580|true|none
 moltres-galar|Dark|Flying|any|8|580|true|none
 morpeko|Electric|Dark|mixed|8|436|true|none
@@ -494,9 +494,9 @@ seaking|Water|Nothing|phys|1|450|true|none
 seismitoad|Water|Ground|any|5|509|true|none
 serperior|Grass|Nothing|mixed|5|528|true|none
 seviper|Poison|Nothing|mixed|3|458|true|none
-sharpedo|Water|Dark|phys|3|460|true|none
+sharpedo|Water|Dark|phys|3|460|true|frail
 shaymin|Grass|Nothing|any|4|600|true|none
-shedinja|Bug|Ghost|phys|3|236|true|slow
+shedinja|Bug|Ghost|phys|3|236|true|frail
 shiftry|Grass|Dark|mixed|3|480|true|none
 shiinotic|Grass|Fairy|spec|7|405|true|slow
 shuckle|Bug|Rock|tank|2|505|true|slow
@@ -517,14 +517,14 @@ slowking|Water|Psychic|tank|2|490|true|spec
 slowbro-galar|Poison|Psychic|tank|8|490|true|slow
 slowking-galar|Poison|Psychic|tank|8|490|true|spec
 slurpuff|Fairy|Nothing|any|6|480|true|none
-smeargle|Normal|Nothing|any|2|250|true|none
+smeargle|Normal|Nothing|any|2|250|true|frail
 sneasler|Poison|Fighting|phys|8|510|true|none
 snorlax|Normal|Nothing|phys|1|540|true|slow
 solgaleo|Psychic|Steel|phys|7|680|true|heavy
 solrock|Rock|Psychic|phys|3|460|true|none
 spectrier|Ghost|Nothing|spec|8|580|true|fast
 spidops|Bug|Nothing|any|9|404|true|slow
-spinda|Normal|Nothing|any|3|360|true|none
+spinda|Normal|Nothing|any|3|360|true|frail
 spiritomb|Ghost|Dark|tank|4|485|true|slow
 squawkabilly|Normal|Flying|phys|9|417|true|none
 stakataka|Rock|Steel|phys|7|570|true|heavy
@@ -583,7 +583,7 @@ tyranitar|Rock|Dark|phys|2|600|true|heavy
 tyrantrum|Rock|Dragon|phys|6|521|true|heavy
 umbreon|Dark|Nothing|tank|2|525|true|none
 unfezant|Normal|Flying|phys|5|488|true|none
-unown|Psychic|Nothing|mixed|2|336|true|slow
+unown|Psychic|Nothing|mixed|2|336|true|frail
 ursaluna|Ground|Normal|phys|8|550|true|slow
 ursaring|Normal|Nothing|phys|2|500|false|none
 urshifu|Fighting|Dark|phys|8|550|true|none
@@ -614,11 +614,11 @@ weezing-galar|Poison|Fairy|any|8|490|true|none
 whimsicott|Grass|Fairy|mixed|5|480|true|none
 whiscash|Water|Ground|any|3|468|true|none
 wigglytuff|Normal|Fairy|mixed|1|435|true|slow
-wishiwashi|Water|Nothing|any|7|175|true|slow
+wishiwashi|Water|Nothing|any|7|175|true|frail
 wobbuffet|Psychic|Nothing|tank|2|405|true|slow
 wo-chien|Dark|Grass|tank|9|570|true|none
 wormadam|Bug|Grass|tank|4|424|true|slow
-wugtrio|Water|Nothing|phys|9|425|true|none
+wugtrio|Water|Nothing|phys|9|425|true|frail
 wyrdeer|Normal|Psychic|mixed|8|525|true|none
 xatu|Psychic|Flying|mixed|2|470|true|none
 xerneas|Fairy|Nothing|mixed|6|680|true|heavy

@@ -1,7 +1,8 @@
 Metronome|Normal|Status|0|100|1|true
 Accelerock|Rock|Physical|40|100|7|true;posprio
 Acid Armor|Poison|Status|0|100|1|true;defence
-Acrobatics|Flying|Physical|55|100|5|true;quickuse
+Acid Spray|Poison|Special|40|100|5|true;terapoison
+Acrobatics|Flying|Physical|55|100|5|true;quickuse;teraflying
 Acupressure|Normal|Status|0|100|4|true;offence;defence;doubles;speed
 Aeroblast|Flying|Special|100|95|2|true;crit;lowpp
 Agility|Psychic|Status|0|100|1|true;speed
@@ -66,16 +67,16 @@ Burning Jealousy|Fire|Special|70|100|8|true;lowpp
 Buzzy Buzz|Electric|Special|90|100|7|true;status
 Calm Mind|Psychic|Status|0|100|3|true;special;defence
 Ceaseless Edge|Dark|Physical|65|90|9|true;slicing;tank
-Charge Beam|Electric|Special|50|90|4|true;ownstatraise;prob70
+Charge Beam|Electric|Special|50|90|4|true;ownstatraise;prob70;teraelectric
 Charm|Fairy|Status|0|100|2|true
 Chatter|Flying|Special|65|100|4|false;sound
-Chilling Water|Water|Special|50|100|9|true
+Chilling Water|Water|Special|50|100|9|true;terawater
 Chilly Reception|Ice|Status|0|100|9|true;tank;switch
 Chloroblast|Grass|Special|150|95|9|true;magicguard;lowpp
 Circle Throw|Fighting|Physical|60|90|5|true;tank;negprio
 Clanging Scales|Dragon|Special|110|100|7|true;sound;ownstatlower;lowpp
 Clangorous Soul|Dragon|Status|0|100|8|true;sound;offence;defence;lowpp;speed
-Clear Smog|Poison|Special|50|100|5|true;tank
+Clear Smog|Poison|Special|50|100|5|true;tank;terapoison
 Close Combat|Fighting|Physical|120|100|4|true;ownstatlower;lowpp
 Coil|Poison|Status|0|100|5|true;physical;defence
 Collision Course|Fighting|Physical|100|100|9|true;lowpp
@@ -92,7 +93,7 @@ Cross Chop|Fighting|Physical|100|80|2|true;crit;lowpp
 Cross Poison|Poison|Physical|70|100|4|true;slicing;crit;prob10
 Crunch|Dark|Physical|80|100|2|true;biting;prob20
 Crush Claw|Normal|Physical|75|95|3|true;prob50
-Curse|Ghost|Status|0|100|2|true;ownstatlower;physical;defence
+Curse|Ghost|Status|0|100|2|true;ownstatlower;physical;defence;teraghost
 Dark Pulse|Dark|Special|80|100|4|true;pulse;prob20
 Darkest Lariat|Dark|Physical|85|100|7|true
 Dazzling Gleam|Fairy|Special|80|100|6|true
@@ -122,7 +123,7 @@ Dragon Pulse|Dragon|Special|85|100|4|true;pulse
 Dragon Rush|Dragon|Physical|100|75|4|true;prob20
 Dragon Tail|Dragon|Physical|60|90|5|true;tank;negprio
 Drain Punch|Fighting|Physical|75|100|4|true;punching;triage
-Draining Kiss|Fairy|Special|50|100|6|true;triage;contact
+Draining Kiss|Fairy|Special|50|100|6|true;triage;contact;terafairy
 Drill Peck|Flying|Physical|80|100|1|true
 Drill Run|Ground|Physical|80|95|5|true;crit
 Drum Beating|Grass|Physical|80|100|8|true;nocontact
@@ -151,7 +152,7 @@ Facade|Normal|Physical|70|100|3|true
 Fake Out|Normal|Physical|40|100|3|true
 Fake Tears|Dark|Status|0|100|3|true
 Feather Dance|Flying|Status|0|100|3|true
-Fell Stinger|Bug|Physical|50|100|6|true;ownstatraise
+Fell Stinger|Bug|Physical|50|100|6|true;ownstatraise;terabug
 Fickle Beam|Dragon|Special|80|100|8|true;lowpp
 Fiery Dance|Fire|Special|80|100|5|true;ownstatraise;prob50
 Fiery Wrath|Dark|Special|90|100|8|true;prob20
@@ -165,7 +166,7 @@ Fire Punch|Fire|Physical|75|100|1|true;punching;prob10
 First Impression|Bug|Physical|90|100|7|true;posprio
 Fishious Rend|Water|Physical|85|100|8|true;biting
 Flame Burst|Fire|Special|70|100|5|true
-Flame Charge|Fire|Physical|50|100|5|true;ownstatraise
+Flame Charge|Fire|Physical|50|100|5|true;ownstatraise;terafire
 Flamethrower|Fire|Special|90|100|1|true;prob10
 Flare Blitz|Fire|Physical|120|100|4|true;recoil;prob10
 Flash Cannon|Steel|Special|80|100|4|true;prob10
@@ -281,7 +282,7 @@ Me First|Normal|Status|0|100|4|true
 Megahorn|Bug|Physical|120|85|2|true
 Memento|Dark|Status|0|100|3|true
 Metal Burst|Steel|Physical|0|100|4|true;direct;nocontact
-Metal Sound|Steel|Status|0|85|3|true;sound
+Metal Sound|Steel|Status|0|85|3|false;sound
 Meteor Beam|Rock|Special|120|90|8|true;charging
 Meteor Mash|Steel|Physical|90|90|3|true;punching;ownstatraise;prob20
 Mighty Cleave|Rock|Physical|95|100|9|true;slicing;lowpp
@@ -332,7 +333,7 @@ Pin Missile|Bug|Physical|25|95|1|false;multihit;nocontact
 Plasma Fists|Electric|Physical|100|100|7|true;punching;crit
 Play Rough|Fairy|Physical|90|90|6|true;prob10
 Pluck|Flying|Physical|60|100|4|false
-Poison Fang|Poison|Physical|50|100|3|true;biting;tank;status;prob50
+Poison Fang|Poison|Physical|50|100|3|true;biting;tank;status;prob50;terapoison
 Poison Jab|Poison|Physical|80|100|4|true;status;prob30
 Pollen Puff|Bug|Special|90|100|7|true;doubles
 Poltergeist|Ghost|Physical|110|90|8|true;lowpp;nocontact
@@ -340,7 +341,7 @@ Population Bomb|Normal|Physical|20|90|9|true;slicing;noguard
 Power Gem|Rock|Special|80|100|4|true
 Power Trip|Dark|Physical|20|100|7|true;setup
 Power Whip|Grass|Physical|120|85|4|true
-Power-Up Punch|Fighting|Physical|40|100|6|false;punching;ownstatraise
+Power-Up Punch|Fighting|Physical|40|100|6|false;punching;ownstatraise;terafighting
 Precipice Blades|Ground|Physical|120|85|6|true;nocontact
 Protect|Normal|Status|0|100|2|true
 Psyblade|Psychic|Physical|80|100|9|true;slicing;terrain
@@ -358,7 +359,7 @@ Pyro Ball|Fire|Physical|120|90|8|true;lowpp;nocontact;prob10
 Quiver Dance|Bug|Status|0|100|5|true;special;defence;speed
 Rage Fist|Ghost|Physical|50|100|9|true;punching;tank
 Raging Bull|Normal|Physical|90|100|9|true
-Rapid Spin|Normal|Physical|50|100|2|true;ownstatraise;tank
+Rapid Spin|Normal|Physical|50|100|2|true;ownstatraise;tank;teranormal
 Razor Shell|Water|Physical|75|95|5|true;slicing;prob50
 Recover|Normal|Status|0|100|1|true;triage;lowpp
 Reflect|Psychic|Status|0|100|1|true;clay
@@ -378,7 +379,7 @@ Roost|Flying|Status|0|100|4|true;triage;lowpp
 Ruination|Dark|Special|0|100|9|true;direct
 Sacred Fire|Fire|Physical|100|95|2|true;status;lowpp;nocontact;prob50
 Sacred Sword|Fighting|Physical|90|100|5|true;slicing
-Salt Cure|Rock|Physical|40|100|9|true;tank;nocontact
+Salt Cure|Rock|Physical|40|100|9|true;tank;nocontact;terarock
 Sandsear Storm|Ground|Special|100|80|8|true
 Sappy Seed|Grass|Special|90|100|7|true
 Scald|Water|Special|80|100|5|true;tank;status;prob30
@@ -417,7 +418,7 @@ Slash|Normal|Physical|70|100|1|false;slicing;crit
 Sleep Talk|Normal|Status|0|100|2|true
 Sludge Bomb|Poison|Special|90|100|2|true;status;prob30
 Sludge Wave|Poison|Special|95|100|5|true;prob10
-Smart Strike|Steel|Physical|70|100|7|true
+Smart Strike|Steel|Physical|70|100|7|false
 Snipe Shot|Water|Special|80|100|8|true;crit
 Soft-Boiled|Normal|Status|0|100|1|true;triage;lowpp
 Solar Beam|Grass|Special|120|100|1|true;charging;sun
@@ -447,7 +448,6 @@ Stored Power|Psychic|Special|20|100|5|true;setup
 Storm Throw|Fighting|Physical|60|100|5|true;crit;
 Strange Steam|Fairy|Special|90|95|8|true;prob20
 Strength Sap|Grass|Status|0|100|7|true;triage
-Submission|Fighting|Physical|80|80|1|false;recoil
 Substitute|Normal|Status|0|100|1|true
 Sucker Punch|Dark|Physical|70|100|4|true;posprio;lowpp
 Sunsteel Strike|Steel|Physical|100|100|7|true;lowpp
@@ -491,12 +491,12 @@ Topsy-Turvy|Dark|Status|0|100|6|true
 Torch Song|Fire|Special|80|100|9|true;sound;ownstatraise
 Toxic|Poison|Status|0|90|1|true;tank;status
 Toxic Spikes|Poison|Status|0|100|4|true;tank;status
-Trailblaze|Grass|Physical|50|100|9|true;ownstatraise
+Trailblaze|Grass|Physical|50|100|9|true;ownstatraise;teragrass
 Transform|Normal|Status|0|100|1|true
 Tri Attack|Normal|Special|80|100|1|true;prob20
 Trick|Psychic|Status|0|100|3|true;choiced
 Trick Room|Psychic|Status|0|100|4|true;negprio;lowpp;persistent
-Triple Arrows|Fighting|Physical|50|100|8|true;crit;nocontact
+Triple Arrows|Fighting|Physical|90|100|8|true;crit;nocontact
 Triple Axel|Ice|Physical|20|90|8|true;noguard
 Triple Dive|Water|Physical|30|95|9|true
 Trop Kick|Grass|Physical|70|100|7|true
@@ -529,7 +529,7 @@ Yawn|Normal|Status|0|100|3|true;status
 Zap Cannon|Electric|Special|120|50|2|false;status;lowpp
 Zen Headbutt|Psychic|Physical|80|90|4|true;prob20
 Zing Zap|Electric|Physical|80|100|7|true;prob30
-Zippy Zap|Electric|Physical|80|100|7|true;crit;posprio
+Zippy Zap|Electric|Physical|80|100|7|false;crit;posprio
 Blazing Torque|Fire|Physical|80|100|9|true;nocontact;prob30
 Combat Torque|Fighting|Physical|100|100|9|true;nocontact;prob30
 Magical Torque|Fairy|Physical|100|100|9|true;nocontact;prob30
@@ -553,8 +553,8 @@ Quash|Dark|Status|0|100|5|false;doubles
 Quick Guard|Fighting|Status|0|100|5|false;doubles
 Rage Powder|Bug|Status|0|100|5|false;doubles
 Wide Guard|Rock|Status|0|100|5|false;doubles
-Rain Dance|Water|Status|0|100|2|false
-Sandstorm|Rock|Status|0|100|2|false
-Snowscape|Ice|Status|0|100|9|false
-Sunny Day|Fire|Status|0|100|2|false
+Rain Dance|Water|Status|0|100|2|false;terawater
+Sandstorm|Rock|Status|0|100|2|false;terarock
+Snowscape|Ice|Status|0|100|9|false;teraice
+Sunny Day|Fire|Status|0|100|2|false;terafire
 Electric Terrain|Electric|Status|0|100|6|false

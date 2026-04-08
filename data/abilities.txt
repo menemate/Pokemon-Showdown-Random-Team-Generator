@@ -34,6 +34,7 @@ Defiant|physical|5|true
 Delta Stream|weakness|6|true;teraflying;doubles
 Desolate Land|balance|6|true;terafire;fire;nowater;type;doubles;weather
 Download|offence|4|true
+Dragonize|offence|9|true;normal;teradragon;type
 Drizzle|balance|3|true;terawater;water;damprock25;type;nofire;doubles;weather
 Drought|balance|3|true;terafire;fire;heatrock25;type;nowater;doubles;weather
 Dry Skin|heal|4|true
@@ -90,6 +91,7 @@ Magician|balance|6|true;quickuse
 Magnet Pull|balance|3|true
 Marvel Scale|special|3|true;flameorb85
 Mega Launcher|special|6|true;pulse
+Mega Sol|balance|9|true;megasol;terafire;fire;type;nowater;doubles;weather
 Merciless|balance|7|true
 Mimicry|balance|8|true
 Mind's Eye|balance|9|true;normal;fighting;teranormal;terafighting;type

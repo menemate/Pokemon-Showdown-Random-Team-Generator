@@ -96,20 +96,29 @@ public class HelloWorld
 {
 	public static void Main(string[] args)
 	{
-		string outputPath = "data/pokepaste.txt";
-		List<Pokemon> pokemons = new List<Pokemon> {};
-		List<Item> items = new List<Item> {};
-		List<Move> moves = new List<Move> {};
-		List<Ability> abilities = new List<Ability> {};
-		List<Type> teras = new List<Type> {};
+		string outputPath			= "data/pokepaste.txt";
+		string outputPathTeams		= "data/GymLeaderTeams.txt";
+		string outputPathPokemon	= "data/GymLeaderPokemon.txt";
+		List<Pokemon> pokemons		= new List<Pokemon> {};
+		List<Item> items			= new List<Item> {};
+		List<Move> moves			= new List<Move> {};
+		List<Ability> abilities		= new List<Ability> {};
+		List<Type> teras			= new List<Type> {};
+
+		bool trainerTeams			= false;
+		bool trainerPokemon			= false;
+		int startOnLine				= 1;
+
 		bool banMegas				= false;
 		bool banZcrystals			= false;
 		bool notSingles				= false;
+		bool useLevels				= true;
 		string currentTerrain		= "none";		// Will change to "grass", "electric", "psychic" or "misty"
+		int nPokemons				= 6;
 
-		bool restrictMons	= false;
-		bool restrictAbils	= false;
-		bool restrictMoves	= false;
+		bool restrictMons			= false;
+		bool restrictAbils			= false;
+		bool restrictMoves			= false;
 
 /*
 	Type.Normal, Type.Fighting, Type.Flying, Type.Poison,
@@ -120,11 +129,7 @@ public class HelloWorld
 */
 		List<Type> includeMonTypes = new List<Type>
 		{
-			Type.Normal, Type.Fighting, Type.Flying, Type.Poison,
-			Type.Ground, Type.Rock, Type.Bug, Type.Ghost,
-			Type.Steel, Type.Fire, Type.Water, Type.Grass,
-			Type.Electric, Type.Psychic, Type.Ice, Type.Dragon,
-			Type.Dark, Type.Fairy, Type.Nothing
+			Type.Nothing
 		};
 		List<Type> includeMoveTypes = new List<Type>
 		{
@@ -142,11 +147,13 @@ public class HelloWorld
 
 /* "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" */
 		List<string> includeMonName		= new List<string>{ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
-		List<string> includeAbilName	= new List<string>{ "j", "k", "r"};
-		List<string> includeMoveName	= new List<string>{ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+		List<string> includeAbilName	= new List<string>{ "deso"};
+		List<string> includeMoveName	= new List<string>{ "metrono"};
 
 
-		var lines = new List<string>();
+		var lines			= new List<string>();
+		var linesTeams		= new List<string>();
+		var linesPokemon	= new List<string>();
 
 		string pokemonsPath		= "data/pokemons.txt";
 		string movesPath		= "data/moves.txt";
@@ -383,7 +390,7 @@ public class HelloWorld
 		List<string> chosenItems		= new List<string> {};
 		List<List<string>> chosenMoves	= new List<List<string>> {};
 
-		for(int i = 0; i < 6; i++)
+		for(int i = 0; i < nPokemons; i++)
 		{
 			// Restricts pokemons when necessary.
 			if (restrictMons)
@@ -654,7 +661,7 @@ public class HelloWorld
 					if(Probability.Roll(94))
 					{
 						List<string> formes = new List<string> {"arceus-fighting", "arceus-flying", "arceus-poison", "arceus-ground", "arceus-rock", "arceus-bug", "arceus-ghost", "arceus-steel", "arceus-fire",
-		"arceus-water", "arceus-grass", "arceus-electric", "arceus-psychic", "arceus-ice", "arceus-dragon", "arceus-dark", "arceus-fairy" };
+			"arceus-water", "arceus-grass", "arceus-electric", "arceus-psychic", "arceus-ice", "arceus-dragon", "arceus-dark", "arceus-fairy" };
 						randomPokemon.name = formes[Random.Shared.Next(formes.Count)];
 						switch(randomPokemon.name)
 						{
@@ -716,7 +723,7 @@ public class HelloWorld
 					if(Probability.Roll(94))
 					{
 						List<string> formes = new List<string> {"silvally-fighting", "silvally-flying", "silvally-poison", "silvally-ground", "silvally-rock", "silvally-bug", "silvally-ghost", "silvally-steel", "silvally-fire",
-		"silvally-water", "silvally-grass", "silvally-electric", "silvally-psychic", "silvally-ice", "silvally-dragon", "silvally-dark", "silvally-fairy" };
+			"silvally-water", "silvally-grass", "silvally-electric", "silvally-psychic", "silvally-ice", "silvally-dragon", "silvally-dark", "silvally-fairy" };
 						randomPokemon.name = formes[Random.Shared.Next(formes.Count)];
 						switch(randomPokemon.name)
 						{
@@ -849,6 +856,7 @@ public class HelloWorld
 					{
 						randomPokemon.name = "aegislash-blade";
 						randomPokemon.stats = "mixed";
+						randomPokemon.moreInfo = "frail";
 					}
 				break;
 				case "rotom":
@@ -931,6 +939,7 @@ public class HelloWorld
 				case "wishiwashi":
 					if(Probability.Roll(80) && includeMonBST[0] <= 620 && 620 <= includeMonBST[1])
 						randomPokemon.name = "Wishiwashi-School";
+						randomPokemon.moreInfo = "slow";
 				break;
 				case "necrozma":
 					if(Probability.Roll(75))
@@ -1163,6 +1172,15 @@ public class HelloWorld
 					abil.rate *= 0;
 				if(abil.props.Any(ab => ab.Contains("flameorb")) && (randomPokemon.type1 == Type.Fire || randomPokemon.type2 == Type.Fire))
 					abil.rate *= 0;
+
+				if(abil.props.Contains("nowater") && (randomPokemon.type1 == Type.Water || randomPokemon.type2 == Type.Water))
+					abil.rate = 0;
+				if(abil.props.Contains("nofire") && (randomPokemon.type1 == Type.Fire || randomPokemon.type2 == Type.Fire))
+					abil.rate = 0;
+
+				//	Give Shedinja only these abilities.
+				if(randomPokemon.name == "shedinja" && abil.name != "Wonder Guard" && abil.name != "Sturdy")
+					abil.rate = 0;
 			}
 			Ability randomAbility	= WeightRandomSelect.SelectRandomWeighted(abilities, abil => abil.rate);
 
@@ -1247,6 +1265,24 @@ public class HelloWorld
 				//	Pikachu can have Light Ball.
 				if((randomPokemon.name == "pikachu" || randomPokemon.name == "pikachu-starter") && item.name == "Light Ball")
 					item.rate = 48000;
+				//	Increase Focus Sash for frail pokemons.
+				if(randomPokemon.moreInfo == "frail" && item.name == "Focus Sash" && randomAbility.name != "Sturdy")
+					item.rate *= 100;
+				if(randomPokemon.name == "shedinja")
+				{
+					if(randomAbility.name == "Sturdy")
+					{
+						if(item.name != "Heavy-Duty Boots" && item.name != "Choice Band" && item.name != "Choice Scarf" && item.name != "Ability Shield" && 
+							item.name != "Air Balloon" && item.name != "Quick Claw" && item.name != "Safety Goggles")
+							item.rate = 0;
+					}
+					else
+					{
+						if(item.name != "Heavy-Duty Boots" && item.name != "Choice Band" && item.name != "Choice Scarf" && item.name != "Ability Shield" && 
+							item.name != "Air Balloon" && item.name != "Quick Claw" && item.name != "Safety Goggles" && item.name != "Focus Sash")
+							item.rate = 0;
+					}
+				}
 				//	Removes Air Balloon for Flying and Levitate pokemon.
 				if((randomPokemon.type1 == Type.Flying || randomPokemon.type2 == Type.Flying || randomAbility.name == "Levitate") && item.name == "Air Balloon")
 					item.rate *= 0;
@@ -1273,7 +1309,7 @@ public class HelloWorld
 					item.rate = 15000;
 				}
 				//	A terrain ability enables the chance for seed to appear at a set rate.
-				if(randomAbility.props.Any(ab => ab.Contains("seed")) && item.props.Any(ab => ab.Contains("seed")))
+				if(randomAbility.props.Any(ab => ab.Contains("seed")) && item.props.Any(ab => ab.Contains("seed")) && randomPokemon.moreInfo != "frail")
 				{
 					string match = randomAbility.props.First(ab => ab.Contains("seed"));
 					currentTerrain = match.Substring(match.IndexOf("seed") + "seed".Length);
@@ -1283,7 +1319,7 @@ public class HelloWorld
 						item.rate = 1000;
 				}
 				//	This happens even after a pokemon with terrain ability. Sets the rate for a seed of that terrain.
-				if(item.props.Any(ab => ab.Contains("seed")) && currentTerrain != "none" && !randomAbility.props.Contains("berry") && !randomAbility.props.Contains("nostatraise"))
+				if(item.props.Any(ab => ab.Contains("seed")) && currentTerrain != "none" && !randomAbility.props.Contains("berry") && !randomAbility.props.Contains("nostatraise")  && randomPokemon.moreInfo != "frail")
 				{
 					string itemMatch = item.props.First(ab => ab.Contains("seed"));
 					string itemTerrain = itemMatch.Substring(itemMatch.IndexOf("seed") + "seed".Length);
@@ -1391,6 +1427,9 @@ public class HelloWorld
 						case Type.Ice: item.rate *= 4; break;
 					}
 				}
+				//	Black Sludge only for poison.
+				if(item.name == "Black Sludge" && randomPokemon.type1 != Type.Poison && randomPokemon.type2 != Type.Poison)
+					item.rate = 0;
 
 				if(banZcrystals && item.props.Contains("crystal"))
 					item.rate *= 0;
@@ -1720,11 +1759,36 @@ public class HelloWorld
 					if(randomPokemon.type1 == move.type || randomPokemon.type2 == move.type)
 						move.rate *= 40 * isAdapt;
 
-					// Guaranteed damaging move if the previously chosen 3 moves were status moves.
+					//	Guaranteed damaging move if the previously chosen 3 moves were status moves.
 					if(!pickedMoves.Any(pick => pick.category == 0 || pick.category == 1) && j == 3)
 					{
 						if(move.category == 2)
 							move.rate *= 0;
+					}
+
+					//	Reduce or Boost STATUS moves depending on how many there are for each type.
+					/*	Normal 0.3 (As of 04/04/26) 48 Status
+						Fighting 0.9
+						Flying 1.0
+						Poison 1.0
+						Ground 1.3
+						Rock 1.1
+						Bug 0.8
+						Ghost 1.3
+						Steel 1.0
+						Fire 1.2
+						Water 1.3
+						Grass 0.6
+						Electric 1.2
+						Psychic 0.3 20 Status
+						Ice 1.1
+						Dragon 1.3
+						Dark 0.5
+						Fairy 1.0 */
+					if(move.category == 2 && (move.type == randomPokemon.type1 || move.type == randomPokemon.type2))
+					{
+						int nStatus = moves.Count(m => m.type == move.type && m.category == 2);
+						move.rate *= Math.Max(0.3, 1.5 - (0.1 * nStatus));
 					}
 
 					//	Boost offensive damaging moves of a certain type needed by the ability.
@@ -1752,8 +1816,6 @@ public class HelloWorld
 							if(j == 3 && !zMoveFound)
 								move.rate *= 0;
 						}
-						if(move.props.Contains("choiced"))
-							move.rate *= 0;	//	This is Trick and Switcheroo, they don't do anything with Z Crystals.
 					}
 					else if(randomItem.props.Contains("plate"))
 					{
@@ -1833,24 +1895,24 @@ public class HelloWorld
 								if(move.category != 0 && !move.props.Contains("choiced"))
 									move.rate *= 0;
 								if(move.props.Contains("choiced"))
-									move.rate *= 10;
-								if(move.power < 40)
+									move.rate *= 20;
+								else if(move.power < 40)
 									move.rate *= 0;
 							break;
 							case "special":
 								if(move.category != 1 && !move.props.Contains("choiced"))
 									move.rate *= 0;
 								if(move.props.Contains("choiced"))
-									move.rate *= 10;
-								if(move.power < 40 && move.type != Type.Water)
+									move.rate *= 20;
+								else if(move.power < 40 && move.type != Type.Water)
 									move.rate *= 0;
 							break;
 							case "speed":
 								if(move.category == 2 && !move.props.Contains("choiced"))
 									move.rate *= 0;
 								if(move.props.Contains("choiced"))
-									move.rate *= 10;
-								if(move.power <= 60 && move.type != Type.Steel)
+									move.rate *= 20;
+								else if(move.power <= 60 && move.type != Type.Steel)
 									move.rate *= 0;
 								if(move.props.Contains("negprio") || move.props.Contains("posprio") || move.name == "Gyro Ball")
 									move.rate *= 0;
@@ -1858,8 +1920,14 @@ public class HelloWorld
 						}
 					}
 
-					if(move.props.Contains("choiced") && !randomItem.props.Contains("choiced"))
+					//	Trick and Switcheroo only for Choice items or Black Sludge
+					if(move.props.Contains("choiced") && !randomItem.props.Contains("choiced") && randomItem.name != "Black Sludge")
 						move.rate = 0;
+					if(move.props.Contains("choiced") && randomItem.name == "Black Sludge")
+						move.rate *= 20;
+					if(pickedMoves.Any(p => p.props.Contains("choiced")) && move.props.Contains("choiced"))
+						move.rate = 0;
+					
 
 					//	Handling for speed.
 					if(move.name == "Electro Ball")
@@ -1894,6 +1962,8 @@ public class HelloWorld
 						if(randomPokemon.moreInfo == "fast")
 							move.rate *= 0;
 					}
+					if(randomPokemon.moreInfo == "slow" && move.name == "Curse")
+						move.rate *= 5;
 
 					//	Handling for fatasses.
 					if(move.name == "Heat Crash" || move.name == "Heavy Slam")
@@ -1972,25 +2042,25 @@ public class HelloWorld
 						move.rate *= 0;
 					//	Status boosting abilities.
 					if(randomAbility.props.Contains("status") && move.category == 2)
-						move.rate *= 6;
+						move.rate *= 15;
 					//	Punching abilities and items.
 					if((randomAbility.props.Contains("punching") || randomItem.props.Contains("punching")) && move.props.Contains("punching")){
-						move.rate *= 40; isUsed = true;}
+						move.rate *= 80; isUsed = true;}
 					//	Punk Rock, Liquid Voice, Throat Spray
 					if(randomAbility.props.Contains("sound") && randomAbility.stats == "special" && move.props.Contains("sound") && move.category != 2){
-						move.rate *= 40; isUsed = true;}
+						move.rate *= 80; isUsed = true;}
 					if(randomAbility.props.Contains("sound") && randomAbility.stats == "balance" && move.props.Contains("sound") && move.category != 2){
 						move.rate *= 10; isUsed = true;}
 					if(randomItem.props.Contains("sound") && move.props.Contains("sound"))
 					{
-						move.rate *= 40; isUsed = true;
+						move.rate *= 80; isUsed = true;
 					}
 					//	Magic Guard boosted moves.
 					if(randomAbility.props.Contains("magicguard") && (move.props.Contains("recoil") || move.props.Contains("magicguard"))){
-						move.rate *= 10; isUsed = true;}
+						move.rate *= 20; isUsed = true;}
 					//	Recoil boost abilities.
 					if(randomAbility.props.Contains("recoil") && move.props.Contains("recoil")){
-						move.rate *= 10; isUsed = true;}
+						move.rate *= 20; isUsed = true;}
 					if(randomAbility.props.Contains("switch") && move.props.Contains("switch")){
 						move.rate *= 10; isUsed = true;}
 					//	Stat raising moves boost for Parental Bond and Simple.
@@ -2011,24 +2081,24 @@ public class HelloWorld
 					}
 					//	Boost multihit moves for Skill Link and Loaded Dice, or touching abilities.
 					if((randomAbility.props.Contains("multihit") || randomItem.props.Contains("multihit")) && move.props.Contains("multihit")){
-						move.rate *= 30; isUsed = true;}
+						move.rate *= 80; isUsed = true;}
 					if(randomAbility.props.Contains("touching") && move.props.Contains("multihit")){
-						move.rate *= 15; isUsed = true;}
+						move.rate *= 30; isUsed = true;}
 					//	Boost moves for abilities and/or items for crit, biting, pulse, technician and triage.
 					if((randomAbility.props.Contains("crit") || randomItem.props.Contains("crit")) && move.props.Contains("crit")){
-						move.rate *= 10; isUsed = true;}
+						move.rate *= 20; isUsed = true;}
 					if(randomAbility.props.Contains("biting") && move.props.Contains("biting")){
-						move.rate *= 40; isUsed = true;}
+						move.rate *= 80; isUsed = true;}
 					if(randomAbility.props.Contains("slicing") && move.props.Contains("slicing")){
-						move.rate *= 40; isUsed = true;}
+						move.rate *= 80; isUsed = true;}
 					if(randomAbility.props.Contains("pulse") && move.props.Contains("pulse")){
-						move.rate *= 40; isUsed = true;}
+						move.rate *= 80; isUsed = true;}
 					if(randomAbility.props.Contains("power60") && move.power <= 60 && move.power >= 15){
-						move.rate *= 10; isUsed = true;}
+						move.rate *= 20; isUsed = true;}
 					if(randomAbility.props.Contains("power60") && move.power > 60 && move.power < 90){
 						move.rate *= 0;	}
 					if(randomAbility.props.Contains("triage") && move.props.Contains("triage")){
-						move.rate *= 10; isUsed = true;}
+						move.rate *= 40; isUsed = true;}
 					if(!randomAbility.props.Contains("triage") && pickedMoves.Any(p => p.props.Contains("triage")) && move.props.Contains("triage"))
 						move.rate = 0;
 					//	Boost Acrobatics on items that are used quickly, otherwise remove it.
@@ -2048,7 +2118,7 @@ public class HelloWorld
 						move.rate *= 0;
 					//	Increase rates of charging moves while Power Herb is held until one is picked otherwise nerf them or even remove them.
 					if(randomItem.props.Contains("charging") && move.props.Contains("charging") && !chargingMoveUsed){
-						move.rate *= 20; isUsed = true;}
+						move.rate *= 40; isUsed = true;}
 					if(!randomItem.props.Contains("charging") && move.props.Contains("charging"))
 						move.rate *= 0.25;
 					if(chargingMoveUsed && move.props.Contains("charging"))
@@ -2061,6 +2131,12 @@ public class HelloWorld
 						if(move.category == 0 && move.props.Contains("nocontact"))
 							move.rate = 0;	
 					}
+
+					//	Disable Trick Room for non-slow pokemons or persistent.
+					if(move.name == "Trick Room" && randomPokemon.moreInfo != "slow" && randomAbility.name != "Persistent")
+						move.rate = 0;
+					if(move.name == "Trick Room" && randomPokemon.moreInfo == "slow")
+						move.rate *= 5;
 					
 					//	CAP abilities.
 					if(randomAbility.props.Contains("persistent") && move.props.Contains("persistent"))
@@ -2096,6 +2172,15 @@ public class HelloWorld
 					//	Tailwind Wind Rider
 					if(randomAbility.name == "Wind Rider" && move.name == "Tailwind")
 						move.rate *= 120;
+
+					// Substitute boost on Leftovers and Black Sludge, or healing abilities.
+					if(move.name == "Substitute")
+					{
+						if(randomItem.name == "Leftovers" || randomItem.name == "Black Sludge")
+							move.rate *= 10;
+						if(randomAbility.stats == "heal")
+							move.rate *= 10;
+					}
 
 					//	Terrain boosted moves during terrain, otherwise reduce them.
 					if(move.props.Contains("terrain"))
@@ -2175,6 +2260,8 @@ public class HelloWorld
 						}
 					}
 
+					
+
 					//	Moves boosted by weather
 					if(move.name == "Weather Ball")
 					{
@@ -2190,6 +2277,20 @@ public class HelloWorld
 						if(move.props.Contains("rain"))
 							move.rate *= 0;
 					}
+					//	Mega Sol handle.
+					else if(randomAbility.props.Contains("megasol"))
+					{
+						if(move.props.Contains("sun"))
+						{
+							move.rate *= 20;
+							if(move.props.Contains("charging"))
+								move.rate *= 32;
+						}
+						if(move.type == Type.Fire)
+							move.rate *= 5;
+						if(move.props.Contains("rain"))
+							move.rate *= 0;
+					}
 					else if(randomAbility.name == "Sand Spit" || randomAbility.name == "Sand Stream")
 					{
 						if(move.props.Contains("sand"))
@@ -2199,6 +2300,8 @@ public class HelloWorld
 					{
 						if(move.props.Contains("rain"))
 							move.rate *= 5;
+						if(move.props.Contains("sun"))
+							move.rate = 0;
 					}
 					else
 					{
@@ -2221,6 +2324,14 @@ public class HelloWorld
 							move.rate = 0;
 						if(chosenAbilities.Any(a => a == "Misty Surge"))
 							move.rate *= 0.5;
+					}
+
+					//	Moves not for Shedinja.
+					if(randomPokemon.name == "shedinja")
+					{
+						if(move.props.Contains("triage") || move.props.Contains("defence") || move.props.Contains("recoil") || move.props.Contains("charging")
+						|| move.props.Contains("clay") || move.props.Contains("magicguard") || move.props.Contains("negprio"))
+							move.rate = 0;
 					}
 					
 					if(move.props.Contains("false") && !isUsed)
@@ -2290,6 +2401,13 @@ public class HelloWorld
 
 			//	Some moves, abilities or items force a bunch of teras, if nothing was forced when choose based on move or Stellar.
 			List<string> possibleTeras = new List<string>{};
+			switch (randomPokemon.name)
+			{
+				case "ogerpon": possibleTeras.Add("grass");	break;
+				case "Ogerpon-Cornerstone": possibleTeras.Add("rock");	break;
+				case "Ogerpon-Hearthflame": possibleTeras.Add("fire");	break;
+				case "Ogerpon-Wellspring": possibleTeras.Add("water");	break;
+			}
 			var abilTeras = randomAbility.props.Where(ab => ab.Contains("tera")).Select(ab => ab.Substring(ab.IndexOf("tera") + "tera".Length)).ToList();
 			possibleTeras.AddRange(abilTeras);
 			var itemTeras = randomItem.props.Where(it => it.Contains("tera")).Select(it => it.Substring(it.IndexOf("tera") + "tera".Length)).ToList();
@@ -2325,9 +2443,319 @@ public class HelloWorld
 		
 			lines.Add(randomNick + " (" + randomPokemon.name + ") @ " + randomItem.name);
 			lines.Add("Ability: " + randomAbility.name);
+			if(useLevels && i == 0)
+				lines.Add("Level: " + Math.Min(255, Math.Round((double)720 / randomPokemon.bst * 125)));
 			if(Probability.Roll(1))
 				lines.Add("Shiny: Yes");
 			lines.Add("Tera Type: " + char.ToUpper(chosenTera[0]) + chosenTera.Substring(1));
+
+			/* EV IV
+				Phys
+					EVs: 100 HP / 108 Atk / 100 Def / 0 SpA / 100 SpD / 100 Spe
+					Adamant/Jolly/Hasty(berry) Nature
+				Spec
+					EVs: 100 HP / 0 Atk / 100 Def / 108 SpA / 100 SpD / 100 Spe
+					Modest/Timid/Hasty(berry) Nature
+				Slow
+					EVs: 0 Spe
+					Brave/Relaxed/Quiet/Sassy/Serious Nature
+				Fast
+					EVs: 252 Spe
+					Timid/Jolly/Hasty(berry) Nature
+				Frail
+					EVs: 4 HP / 0 Def / 0 SpD
+			*/
+			Dictionary<string, int> evs = new Dictionary<string, int>
+            {
+                { "HP", 0 },
+                { "Atk", 0 },
+                { "Def", 0 },
+                { "SpA", 0 },
+                { "SpD", 0 },
+                { "Spe", 0 }
+            };
+			string nature = "";
+			Dictionary<string, int> ivs = new Dictionary<string, int>{ { "Atk", 31 },{ "Spe", 31 }};
+			switch (randomPokemon.stats)
+			{
+				case "phys":
+					{
+						Random rPhys = new Random();
+						string[] posNat = {"Adamant", "Jolly"};
+						nature = posNat[rPhys.Next(0, posNat.Length)];
+
+						evs = new Dictionary<string, int> {{ "HP", 60 },{ "Atk", 164 },{ "Def", 60 },{ "SpA", 0 },{ "SpD", 60 },{ "Spe", 164 }};
+						if(randomPokemon.moreInfo == "fast") {
+							evs = new Dictionary<string, int> {{ "HP", 0 },{ "Atk", 252 },{ "Def", 0 },{ "SpA", 0 },{ "SpD", 4 },{ "Spe", 252 }};
+							nature = "Jolly";
+						}
+						else if(randomPokemon.moreInfo == "slow" || pickedMoves.Any(m => m.name == "Trick Room"))
+						{
+							evs = new Dictionary<string, int> {{ "HP", 136 },{ "Atk", 252 },{ "Def", 60 },{ "SpA", 0 },{ "SpD", 60 },{ "Spe", 0 }};
+							nature = "Brave";
+							if(pickedMoves.Any(m => m.name == "Gyro Ball" || m.name == "Trick Room"))
+								ivs = new Dictionary<string, int>{ { "Atk", 31 },{ "Spe", 0 }};
+						}
+						else if(randomPokemon.moreInfo == "frail")
+						{
+							evs = new Dictionary<string, int> {{ "HP", 0 },{ "Atk", 252 },{ "Def", 0 },{ "SpA", 0 },{ "SpD", 4 },{ "Spe", 252 }};
+						}
+					}
+				break;
+				case "spec":
+					{
+						Random rSpec = new Random();
+						string[] posNat = {"Modest", "Timid"};
+						nature = posNat[rSpec.Next(0, posNat.Length)];
+
+						evs = new Dictionary<string, int> {{ "HP", 60 },{ "Atk", 0 },{ "Def", 60 },{ "SpA", 164 },{ "SpD", 60 },{ "Spe", 164 }};
+						ivs = new Dictionary<string, int>{ { "Atk", 0 },{ "Spe", 31 }};
+						if(randomPokemon.moreInfo == "fast") {
+							evs = new Dictionary<string, int> {{ "HP", 0 },{ "Atk", 0 },{ "Def", 0 },{ "SpA", 252 },{ "SpD", 4 },{ "Spe", 252 }};
+							nature = "Timid";
+						}
+						else if(randomPokemon.moreInfo == "slow" || pickedMoves.Any(m => m.name == "Trick Room"))
+						{
+							evs = new Dictionary<string, int> {{ "HP", 136 },{ "Atk", 0 },{ "Def", 60 },{ "SpA", 252 },{ "SpD", 60 },{ "Spe", 0 }};
+							nature = "Quiet";
+							if(pickedMoves.Any(m => m.name == "Gyro Ball" || m.name == "Trick Room"))
+								ivs = new Dictionary<string, int>{ { "Atk", 0 },{ "Spe", 0 }};
+						}
+						else if(randomPokemon.moreInfo == "frail")
+						{
+							evs = new Dictionary<string, int> {{ "HP", 0 },{ "Atk", 0 },{ "Def", 0 },{ "SpA", 252 },{ "SpD", 4 },{ "Spe", 252 }};
+						}
+					}
+				break;
+				case "tank":
+					{
+						int nPhys = pickedMoves.Count(m => m.category == 0);
+						int nSpec = pickedMoves.Count(m => m.category == 1);
+						int nStat = pickedMoves.Count(m => m.category == 2);
+						if(nPhys > nSpec && nPhys > nStat)
+						{
+							evs = new Dictionary<string, int> {{ "HP", 128 },{ "Atk", 128 },{ "Def", 100 },{ "SpA", 0 },{ "SpD", 100 },{ "Spe", 52 }};
+							nature = "Adamant";
+						}
+						else if(nSpec > nPhys && nSpec > nStat)
+						{
+							evs = new Dictionary<string, int> {{ "HP", 128 },{ "Atk", 0 },{ "Def", 100 },{ "SpA", 128 },{ "SpD", 100 },{ "Spe", 52 }};
+							nature = "Modest";
+							if(nSpec > nPhys && nPhys == 0)
+								ivs = new Dictionary<string, int>{ { "Atk", 0 },{ "Spe", 31 }};
+						}
+						else
+						{
+							evs = new Dictionary<string, int> {{ "HP", 248 },{ "Atk", 0 },{ "Def", 104 },{ "SpA", 0 },{ "SpD", 104 },{ "Spe", 52 }};
+							if(nSpec > nPhys)
+							{
+								Random rTank = new Random();
+								string[] posNat = {"Bold", "Calm"};
+								nature = posNat[rTank.Next(0, posNat.Length)];
+								if(nPhys == 0)
+									ivs = new Dictionary<string, int>{ { "Atk", 0 },{ "Spe", 31 }};
+							}
+							else if(nPhys > nSpec)
+							{
+								Random rTank = new Random();
+								string[] posNat = {"Impish", "Careful"};
+								nature = posNat[rTank.Next(0, posNat.Length)];
+							}
+							else
+							{
+								Random rTank = new Random();
+								string[] posNat = {"Relaxed", "Sassy"};
+								nature = posNat[rTank.Next(0, posNat.Length)];
+							}
+						}
+						if(randomPokemon.moreInfo == "slow" || pickedMoves.Any(m => m.name == "Trick Room"))
+						{
+							evs["Spe"] -= 52;
+							evs["HP"] += 4;
+							evs["Def"] += 24;
+							evs["SpD"] += 24;
+							Random rTank = new Random();
+							string[] posNat = {"Relaxed", "Sassy"};
+							nature = posNat[rTank.Next(0, posNat.Length)];
+							if(pickedMoves.Any(m => m.name == "Gyro Ball" || m.name == "Trick Room"))
+								ivs["Spe"] = 0;
+						}
+					}
+				break;
+				case "mixed":
+				case "any":
+					{
+						int nPhys = pickedMoves.Count(m => m.category == 0);
+						int nSpec = pickedMoves.Count(m => m.category == 1);
+						evs = new Dictionary<string, int> {{ "HP", 52 },{ "Atk", 0 },{ "Def", 52 },{ "SpA", 0 },{ "SpD", 52 },{ "Spe", 0 }};
+						evs["Atk"] = 44 * nPhys;
+						evs["SpA"] = 44 * nSpec;
+						evs["Spe"] = Math.Min(352 - evs["Atk"] - evs["SpA"], 252);
+						if(352 - evs["Atk"] - evs["SpA"] > 252)
+							evs["HP"] += 352 - evs["Atk"] - evs["SpA"] - 252;
+
+						if(randomPokemon.moreInfo == "fast") {
+							int speDif = 252 - evs["Spe"];
+							evs["Spe"] = 252;
+							for(int h = 0; h < speDif; h += 4)
+							{
+								int modul = h % 12;
+								switch (modul)
+								{
+									case 0: evs["HP"] -= 4;	break;
+									case 4: evs["Def"] -= 4;	break;
+									case 8: evs["SpD"] -= 4;	break;
+								}
+							}
+							if(nPhys == 0)
+								nature = "Timid";
+							else if(nSpec == 0)
+								nature = "Jolly";
+							else
+								nature = "Hasty";
+						}
+						else if(randomPokemon.moreInfo == "slow" || pickedMoves.Any(m => m.name == "Trick Room"))
+						{
+							int speDif = evs["Spe"];
+							int hpDif = 0;
+							evs["Spe"] = 0;
+							if(speDif + evs["HP"] > 252)
+								hpDif = speDif + evs["HP"] - 252;
+							evs["HP"] += Math.Min(252 - evs["HP"], speDif);	/* Test */
+							if(pickedMoves.Any(m => m.name == "Gyro Ball" || m.name == "Trick Room"))
+								ivs["Spe"] = 0;
+							if(nPhys == 0)
+							{
+								nature = "Quiet";
+								evs["SpA"] += hpDif;
+							}
+							else if(nSpec == 0)
+							{
+								nature = "Brave";
+								evs["Atk"] += hpDif;
+							}
+							else
+							{
+								evs["SpD"] += hpDif;
+								nature = "Sassy";
+							}
+						}
+						else if(randomPokemon.moreInfo == "frail")
+						{
+							evs = new Dictionary<string, int> {{ "HP", 0 },{ "Atk", 0 },{ "Def", 0 },{ "SpA", 0 },{ "SpD", 4 },{ "Spe", 252 }};
+							if(nPhys > nSpec)
+							{
+								evs["Atk"] = 252;
+								if(nSpec == 0)
+								{
+									Random rSpec = new Random();
+									string[] posNat = {"Adamant", "Jolly"};
+									nature = posNat[rSpec.Next(0, posNat.Length)];
+								}
+								else
+								{
+									Random rSpec = new Random();
+									string[] posNat = {"Lonely", "Hasty"};
+									nature = posNat[rSpec.Next(0, posNat.Length)];
+								}
+							}
+							if(nSpec > nPhys)
+							{
+								evs["SpA"] = 252;
+								if(nPhys == 0)
+								{
+									ivs["Atk"] = 0;
+									Random rSpec = new Random();
+									string[] posNat = {"Hardy", "Timid"};
+									nature = posNat[rSpec.Next(0, posNat.Length)];
+								}
+								else
+								{
+									Random rSpec = new Random();
+									string[] posNat = {"Mild", "Hasty"};
+									nature = posNat[rSpec.Next(0, posNat.Length)];
+								}
+							}
+							else
+							{
+								evs["Atk"] = 128;
+								evs["SpA"] = 124;
+								Random rSpec = new Random();
+								string[] posNat = {"Lonely", "Mild", "Hasty"};
+								nature = posNat[rSpec.Next(0, posNat.Length)];
+							}
+						}
+						else
+						{
+							if(nPhys > nSpec)
+							{
+								if(nSpec == 0)
+								{
+									Random rSpec = new Random();
+									string[] posNat = {"Adamant", "Jolly"};
+									nature = posNat[rSpec.Next(0, posNat.Length)];
+								}
+								else
+								{
+									Random rSpec = new Random();
+									string[] posNat = {"Lonely", "Hasty"};
+									nature = posNat[rSpec.Next(0, posNat.Length)];
+								}
+							}
+							if(nSpec > nPhys)
+							{
+								if(nPhys == 0)
+								{
+									ivs["Atk"] = 0;
+									Random rSpec = new Random();
+									string[] posNat = {"Hardy", "Timid"};
+									nature = posNat[rSpec.Next(0, posNat.Length)];
+								}
+								else
+								{
+									Random rSpec = new Random();
+									string[] posNat = {"Mild", "Hasty"};
+									nature = posNat[rSpec.Next(0, posNat.Length)];
+								}
+							}
+							else
+							{
+								Random rSpec = new Random();
+								string[] posNat = {"Lonely", "Mild", "Hasty"};
+								nature = posNat[rSpec.Next(0, posNat.Length)];
+							}
+						}
+					}
+				break;
+			}
+			switch (randomItem.name)
+			{
+				case "Aguav Berry":
+					{
+						/* if(nature == "Naughty" || nature == "Rash" || nature == "Naive" || nature == "Lax")
+						{} */
+					}
+					break;
+				case "Figy Berry":
+				case "Mago Berry":
+				case "Wiki Berry":
+					{
+						if(nature == "Modest" || nature == "Timid" || nature == "Calm" || nature == "Bold"|| nature == "Jolly" || nature == "Brave")
+							nature = "Hasty";
+					}
+					break;
+				case "Iapapa Berry":
+					{
+						if(nature == "Mild" || nature == "Gentle" || nature == "Lonely" || nature == "Hasty")
+							nature = "Naive";
+					}
+					break;
+			}
+
+			lines.Add("EVs: " + evs["HP"] + " HP / " + evs["Atk"] + " Atk / " + evs["Def"] + " Def / " + evs["SpA"] + " SpA / " + evs["SpD"] + " SpD / " + evs["Spe"] + " Spe");
+			lines.Add(nature + " Nature");
+			lines.Add("IVs: " + ivs["Atk"] + " Atk / " + ivs["Spe"] + " Spe");
+
 			foreach(string s in randomMoves)
 			{
 				lines.Add("- " + s);
@@ -2336,6 +2764,38 @@ public class HelloWorld
 		}		
 
 		File.WriteAllLines(outputPath, lines, new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier: true));
+		if (trainerPokemon && trainerTeams)
+		{
+			linesPokemon = new List<string>(lines.Count);
+			int j = 0;
+			int k = 0;
+			string trainer = "[\"" + chosenPokemons[j] + "\", " + startOnLine + "], ";
+			for (int i = 0; i < lines.Count; i++)
+			{
+				if(lines[i] == "")
+				{
+					if (i + 1 < lines.Count)
+					{
+						linesPokemon.Add("|" + lines[i + 1]);
+						i++;
+						k = startOnLine + i - j - 1;
+						j++;
+						trainer += "[\"" + chosenPokemons[j] + "\", " + k;
+						if(j + 1 < nPokemons)
+							trainer += "], ";
+						else
+							trainer += "]";
+					}
+					continue;
+				}
+				linesPokemon.Add(lines[i]);
+			}
+			if(linesPokemon.Count > 0)
+				linesPokemon[0] = "|" + linesPokemon[0];
+			linesTeams.Add(trainer);
+			File.WriteAllLines(outputPathPokemon, linesPokemon, new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier: true));
+			File.WriteAllLines(outputPathTeams, linesTeams, new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier: true));
+		}
 	}
 
 	public class WeightRandomSelect

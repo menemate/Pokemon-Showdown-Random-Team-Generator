@@ -4,6 +4,7 @@ Aguav Berry|balance|65|true;berry
 Air Balloon|balance|100|true;quickuse
 Apicot Berry|defence|20|true;berry;statraise
 Assault Vest|offence|100|true;assault
+Black Sludge|balance|500|true;terapoison
 Blunder Policy|speed|30|true;accuracy30
 Booster Energy|balance|100|false;booster
 Cell Battery|physical|20|true;statraise;teraflying;terawater;teragrass;teraelectric;teradragon
