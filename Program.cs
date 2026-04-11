@@ -92,7 +92,7 @@ public class Item
 		this.ogRate		= r;
 	}
 }
-public class HelloWorld
+public class PokemonGenerator
 {
 	public static void Main(string[] args)
 	{
@@ -105,20 +105,30 @@ public class HelloWorld
 		List<Ability> abilities		= new List<Ability> {};
 		List<Type> teras			= new List<Type> {};
 
-		bool trainerTeams			= false;
-		bool trainerPokemon			= false;
-		int startOnLine				= 1;
+		//	Pokemon Trainer Tournament files.
+		bool trainerTeams			= false;		//	Generate a row for the trainer team.
+		bool trainerPokemon			= false;		//	Generate the team format.
+		int startOnLine				= 1;			//	In case it's not the first team, change the line to something like 61, 121...
 
-		bool banMegas				= false;
-		bool banZcrystals			= false;
-		bool notSingles				= false;
-		bool useLevels				= true;
-		string currentTerrain		= "none";		// Will change to "grass", "electric", "psychic" or "misty"
-		int nPokemons				= 6;
+		bool banMegas				= false;		//	When true, no pokemon can mega evolve, it becomes true after 1 Mega is in the team.
+		bool banZcrystals			= false;		//	When true, Z-Crystal won't appear, it becomes true after 1 Z-Crystal is on the team.
+		bool notSingles				= false;		//	When true, doubles only moves appear
+		string currentTerrain		= "none";		//	Will automatically change to "grass", "electric", "psychic" or "misty".
+		int nPokemons				= 6;			//	How many pokemon in the team.
 
-		bool restrictMons			= false;
-		bool restrictAbils			= false;
-		bool restrictMoves			= false;
+		//	Give pokemon a level.
+		//	Calculation is (levelStart + Math.Min(255, Math.Round((1 - (double)(randomPokemon.bst - levelMinBST) / (levelMaxBST - levelMinBST))  * levelMult)))
+		bool useLevels				= false;		//	Enable different levels per pokemon.
+		int leveledPokemons			= 6;			//	How many pokemons have a level, if the value is 0, only the first pokemon has a level.
+		int levelStart				= 100;			//	Minimum possible level of a pokemon.
+		int levelMinBST				= 400;			//	Lowest BST to compare.
+		int levelMaxBST				= 720;			//	Highest BST to compare.
+		double levelMult			= 55;			//	Pokemon from Lowest to Highest BST range within levelStart and levelStart + levelMult
+
+		//	Filter teams to make sure they use only certain pokemon, abilities or moves
+		bool restrictMons			= false;		//	When true, uses includeMonTypes, includeMonGens, includeMonBST and includeMonName as filters.
+		bool restrictAbils			= false;		//	When true, uses includeAbilGens and includeAbilName as filters.
+		bool restrictMoves			= false;		//	When true, uses includeMoveTypes, includeMoveGens and includeMoveName as filters.
 
 /*
 	Type.Normal, Type.Fighting, Type.Flying, Type.Poison,
@@ -129,7 +139,11 @@ public class HelloWorld
 */
 		List<Type> includeMonTypes = new List<Type>
 		{
-			Type.Nothing
+			Type.Normal, Type.Fighting, Type.Flying, Type.Poison,
+			Type.Ground, Type.Rock, Type.Bug, Type.Ghost,
+			Type.Steel, Type.Fire, Type.Water, Type.Grass,
+			Type.Electric, Type.Psychic, Type.Ice, Type.Dragon,
+			Type.Dark, Type.Fairy, Type.Nothing
 		};
 		List<Type> includeMoveTypes = new List<Type>
 		{
@@ -143,10 +157,10 @@ public class HelloWorld
 		List<int> includeMoveGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
 		List<int> includeAbilGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
 
-		int[] includeMonBST	= {0, 1000};
+		int[] includeMonBST	= {0, 1000};	//	Minimum and maximum Base Stat Total to include in the team, min and max values are included.
 
 /* "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" */
-		List<string> includeMonName		= new List<string>{ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+		List<string> includeMonName		= new List<string>{ "arceu"};
 		List<string> includeAbilName	= new List<string>{ "deso"};
 		List<string> includeMoveName	= new List<string>{ "metrono"};
 
@@ -2443,8 +2457,8 @@ public class HelloWorld
 		
 			lines.Add(randomNick + " (" + randomPokemon.name + ") @ " + randomItem.name);
 			lines.Add("Ability: " + randomAbility.name);
-			if(useLevels && i == 0)
-				lines.Add("Level: " + Math.Min(255, Math.Round((double)720 / randomPokemon.bst * 125)));
+			if(useLevels && i <= leveledPokemons)
+				lines.Add("Level: " + (levelStart + Math.Min(255, Math.Round((1 - (double)(randomPokemon.bst - levelMinBST) / (levelMaxBST - levelMinBST))  * levelMult))));
 			if(Probability.Roll(1))
 				lines.Add("Shiny: Yes");
 			lines.Add("Tera Type: " + char.ToUpper(chosenTera[0]) + chosenTera.Substring(1));
