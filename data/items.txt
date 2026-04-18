@@ -17,7 +17,7 @@ Custap Berry|speed|100|true;berry
 Draco Plate|balance|40|true;dragon;teradragon;plate
 Dread Plate|balance|40|true;dark;teradark;plate
 Earth Plate|balance|40|true;ground;teraground;plate
-Eject Button|balance|65|true;quickuse
+Eject Button|balance|65|true;quickuse;tank
 Eject Pack|balance|65|true;ownstatlower
 Eviolite|balance|100|false;notevo
 Enigma Berry|balance|65|true;berry
@@ -57,7 +57,7 @@ Punching Glove|physical|25|true;punching
 Quick Claw|speed|80|true
 Razor Claw|balance|50|true;crit
 Razor Fang|balance|50|true
-Red Card|balance|65|true;quickuse
+Red Card|balance|65|true;quickuse;tank
 Rocky Helmet|defence|100|true
 Rowap Berry|balance|50|true;berry
 Safety Goggles|balance|50|true

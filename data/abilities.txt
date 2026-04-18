@@ -4,7 +4,7 @@ Aftermath|balance|4|true
 Air Lock|balance|3|true;doubles
 Analytic|speed|5|true
 Anger Point|physical|4|true
-Anger Shell|offence|9|true
+Anger Shell|offence|9|true;stay
 Arena Trap|balance|3|true;doubles
 Armor Tail|balance|9|true;doubles
 Aroma Veil|balance|6|true;doubles
@@ -98,7 +98,7 @@ Mind's Eye|balance|9|true;normal;fighting;teranormal;terafighting;type
 Mirror Armor|balance|8|true
 Misty Surge|status|7|true;seedmisty;nodragon;doubles
 Mold Breaker|balance|4|true
-Moody|balance|5|true
+Moody|balance|5|true;stay
 Motor Drive|speed|4|true;teraflying;terawater
 Mountaineer|balance|0|true
 Moxie|physical|5|true
@@ -213,7 +213,7 @@ Water Absorb|heal|3|true;terarock;teraground;terafire
 Water Bubble|balance|7|true;water;terawater;type
 Water Compaction|defence|7|true;terawater;teragrass;teradragon
 Water Veil|balance|3|true
-Weak Armor|speed|5|true
+Weak Armor|speed|5|true;stay
 Well-Baked Body|defence|9|true
 Wind Rider|physical|9|true
 Wonder Guard|weakness|3|true

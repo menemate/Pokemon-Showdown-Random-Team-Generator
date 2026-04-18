@@ -114,19 +114,19 @@ public class PokemonGenerator
 		bool banZcrystals			= false;		//	When true, Z-Crystal won't appear, it becomes true after 1 Z-Crystal is on the team.
 		bool notSingles				= false;		//	When true, doubles only moves appear
 		string currentTerrain		= "none";		//	Will automatically change to "grass", "electric", "psychic" or "misty".
-		int nPokemons				= 6;			//	How many pokemon in the team.
+		int nPokemons				= 5;			//	How many pokemon in the team.
 
 		//	Give pokemon a level.
 		//	Calculation is (levelStart + Math.Min(255, Math.Round((1 - (double)(randomPokemon.bst - levelMinBST) / (levelMaxBST - levelMinBST))  * levelMult)))
 		bool useLevels				= false;		//	Enable different levels per pokemon.
-		int leveledPokemons			= 6;			//	How many pokemons have a level, if the value is 0, only the first pokemon has a level.
-		int levelStart				= 100;			//	Minimum possible level of a pokemon.
+		int leveledPokemons			= 12;			//	How many pokemons have a level, if the value is 0, only the first pokemon has a level.
+		int levelStart				= 150;			//	Minimum possible level of a pokemon.
 		int levelMinBST				= 400;			//	Lowest BST to compare.
 		int levelMaxBST				= 720;			//	Highest BST to compare.
-		double levelMult			= 55;			//	Pokemon from Lowest to Highest BST range within levelStart and levelStart + levelMult
+		double levelMult			= 50;			//	Pokemon from Lowest to Highest BST range within levelStart and levelStart + levelMult
 
 		//	Filter teams to make sure they use only certain pokemon, abilities or moves
-		bool restrictMons			= false;		//	When true, uses includeMonTypes, includeMonGens, includeMonBST and includeMonName as filters.
+		bool restrictMons			= true;		//	When true, uses includeMonTypes, includeMonGens, includeMonBST and includeMonName as filters.
 		bool restrictAbils			= false;		//	When true, uses includeAbilGens and includeAbilName as filters.
 		bool restrictMoves			= false;		//	When true, uses includeMoveTypes, includeMoveGens and includeMoveName as filters.
 
@@ -147,22 +147,18 @@ public class PokemonGenerator
 		};
 		List<Type> includeMoveTypes = new List<Type>
 		{
-			Type.Normal, Type.Fighting, Type.Flying, Type.Poison,
-			Type.Ground, Type.Rock, Type.Bug, Type.Ghost,
-			Type.Steel, Type.Fire, Type.Water, Type.Grass,
-			Type.Electric, Type.Psychic, Type.Ice, Type.Dragon,
-			Type.Dark, Type.Fairy, Type.Nothing
+			Type.Psychic, Type.Bug, Type.Ghost, Type.Ice, Type.Steel, Type.Grass
 		};
 		List<int> includeMonGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
 		List<int> includeMoveGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
 		List<int> includeAbilGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
 
-		int[] includeMonBST	= {0, 1000};	//	Minimum and maximum Base Stat Total to include in the team, min and max values are included.
+		int[] includeMonBST	= {0, 480};	//	Minimum and maximum Base Stat Total to include in the team, min and max values are included.
 
 /* "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" */
-		List<string> includeMonName		= new List<string>{ "arceu"};
-		List<string> includeAbilName	= new List<string>{ "deso"};
-		List<string> includeMoveName	= new List<string>{ "metrono"};
+		List<string> includeMonName		= new List<string>{ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+		List<string> includeAbilName	= new List<string>{ "protos"};
+		List<string> includeMoveName	= new List<string>{ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
 
 		var lines			= new List<string>();
@@ -430,7 +426,8 @@ public class PokemonGenerator
 			}
 
 			//	Choose the pokemon.
-			Pokemon randomPokemon	= WeightRandomSelect.SelectRandomWeighted(pokemons, poke => poke.rate);
+			Pokemon tmpPokemon	= WeightRandomSelect.SelectRandomWeighted(pokemons, poke => poke.rate);
+			Pokemon randomPokemon	= new Pokemon(tmpPokemon.name, tmpPokemon.type1, tmpPokemon.type2, tmpPokemon.stats, tmpPokemon.generation, tmpPokemon.bst, tmpPokemon.fullevo, tmpPokemon.rate, tmpPokemon.moreInfo);
 
 			//	Assigns a mega stone to the pokemon, changes some parameters when needed. Mega Stone as item is assigned later.
 			string megaType	= "nothing";
@@ -840,7 +837,7 @@ public class PokemonGenerator
 				case "kyurem":
 					if(Probability.Roll(67))
 					{
-						if(includeMonBST[0] <= 700 && 700 <= includeMonBST[1])
+						if(!restrictMons || (includeMonBST[0] <= 700 && 700 <= includeMonBST[1]))
 						{
 							List<string> formes = new List<string> {"kyurem-black", "kyurem-white" };
 							randomPokemon.name = formes[Random.Shared.Next(formes.Count)];
@@ -876,7 +873,7 @@ public class PokemonGenerator
 				case "rotom":
 					if(Probability.Roll(85))
 					{
-						if(includeMonBST[0] <= 520 && 520 <= includeMonBST[1])
+						if(!restrictMons || (includeMonBST[0] <= 520 && 520 <= includeMonBST[1]))
 						{
 							List<string> formes = new List<string> {"Rotom-Fan", "Rotom-Frost", "Rotom-Heat", "Rotom-Mow", "Rotom-Wash" };
 							randomPokemon.name = formes[Random.Shared.Next(formes.Count)];
@@ -951,7 +948,7 @@ public class PokemonGenerator
 					}
 				break;
 				case "wishiwashi":
-					if(Probability.Roll(80) && includeMonBST[0] <= 620 && 620 <= includeMonBST[1])
+					if(Probability.Roll(80) && (!restrictMons || (includeMonBST[0] <= 620 && 620 <= includeMonBST[1])))
 						randomPokemon.name = "Wishiwashi-School";
 						randomPokemon.moreInfo = "slow";
 				break;
@@ -959,12 +956,12 @@ public class PokemonGenerator
 					if(Probability.Roll(75))
 					{
 						List<string> formes = new List<string> {};
-						if(includeMonBST[0] <= 680 && 680 <= includeMonBST[1])
+						if(!restrictMons || (includeMonBST[0] <= 680 && 680 <= includeMonBST[1]))
 						{
 							formes.Add("Necrozma-Dawn-Wings");
 							formes.Add("Necrozma-Dusk-Mane");
 						}
-						if(includeMonBST[0] <= 754 && 754 <= includeMonBST[1])
+						if(!restrictMons || (includeMonBST[0] <= 754 && 754 <= includeMonBST[1]))
 						{
 							formes.Add("Necrozma-Ultra");
 						}
@@ -1008,7 +1005,7 @@ public class PokemonGenerator
 				case "zacian":
 					if(Probability.Roll(50))
 					{
-						if(includeMonBST[0] <= 700 && 700 <= includeMonBST[1])
+						if(!restrictMons || (includeMonBST[0] <= 700 && 700 <= includeMonBST[1]))
 						{
 							randomPokemon.name = "zacian-crowned";
 							randomPokemon.type2 = Type.Steel;
@@ -1018,7 +1015,7 @@ public class PokemonGenerator
 				case "zamazenta":
 					if(Probability.Roll(50))
 					{
-						if(includeMonBST[0] <= 700 && 700 <= includeMonBST[1])
+						if(!restrictMons || (includeMonBST[0] <= 700 && 700 <= includeMonBST[1]))
 						{
 							randomPokemon.name = "zamazenta-crowned";
 							randomPokemon.type2 = Type.Steel;
@@ -1035,7 +1032,7 @@ public class PokemonGenerator
 				case "calyrex":
 					if(Probability.Roll(70))
 					{
-						if(includeMonBST[0] <= 680 && 680 <= includeMonBST[1])
+						if(!restrictMons || (includeMonBST[0] <= 680 && 680 <= includeMonBST[1]))
 						{
 							List<string> formes = new List<string> { "Calyrex-Ice", "Calyrex-Shadow" };
 							randomPokemon.name = formes[Random.Shared.Next(formes.Count)];
@@ -1058,7 +1055,7 @@ public class PokemonGenerator
 				case "ursaluna":
 					if(Probability.Roll(50))
 					{
-						if(includeMonBST[0] <= 555 && 555 <= includeMonBST[1])
+						if(!restrictMons || (includeMonBST[0] <= 555 && 555 <= includeMonBST[1]))
 						{
 							randomPokemon.name = "ursaluna-bloodmoon";
 							randomPokemon.stats = "spec";
@@ -1074,7 +1071,7 @@ public class PokemonGenerator
 					}
 				break;
 				case "palafin":
-					if(Probability.Roll(60) && includeMonBST[0] <= 650 && 650 <= includeMonBST[1])
+					if(!restrictMons || (Probability.Roll(60) && includeMonBST[0] <= 650 && 650 <= includeMonBST[1]))
 						randomPokemon.name = "palafin-hero";
 				break;
 				case "ogerpon":
@@ -1100,9 +1097,9 @@ public class PokemonGenerator
 					if(Probability.Roll(70))
 					{
 						List<string> formes = new List<string> {};
-						if(includeMonBST[0] <= 600 && 600 <= includeMonBST[1])
+						if(!restrictMons || (includeMonBST[0] <= 600 && 600 <= includeMonBST[1]))
 							formes.Add("Terapagos-Terastal");
-						if(includeMonBST[0] <= 700 && 700 <= includeMonBST[1])
+						if(!restrictMons || (includeMonBST[0] <= 700 && 700 <= includeMonBST[1]))
 							formes.Add("Terapagos-Stellar");
 
 						if(formes.Count > 0)
@@ -1191,12 +1188,15 @@ public class PokemonGenerator
 					abil.rate = 0;
 				if(abil.props.Contains("nofire") && (randomPokemon.type1 == Type.Fire || randomPokemon.type2 == Type.Fire))
 					abil.rate = 0;
+				if(abil.props.Contains("nodragon") && (randomPokemon.type1 == Type.Dragon || randomPokemon.type2 == Type.Dragon))
+					abil.rate = 0;
 
 				//	Give Shedinja only these abilities.
 				if(randomPokemon.name == "shedinja" && abil.name != "Wonder Guard" && abil.name != "Sturdy")
 					abil.rate = 0;
 			}
-			Ability randomAbility	= WeightRandomSelect.SelectRandomWeighted(abilities, abil => abil.rate);
+			Ability tmpAbility		= WeightRandomSelect.SelectRandomWeighted(abilities, abil => abil.rate);
+			Ability randomAbility	= new Ability(tmpAbility.name, tmpAbility.stats, tmpAbility.generation, tmpAbility.props, tmpAbility.rate);
 
 			if (replaceAbility != "nothing")
 				randomAbility = abilities.First(ab => ab.name == replaceAbility);
@@ -1282,6 +1282,9 @@ public class PokemonGenerator
 				//	Increase Focus Sash for frail pokemons.
 				if(randomPokemon.moreInfo == "frail" && item.name == "Focus Sash" && randomAbility.name != "Sturdy")
 					item.rate *= 100;
+				//	Remove Focus Sash on tanky pokemon.
+				if((randomPokemon.stats == "tank" || randomAbility.name == "Sturdy") && item.name == "Focus Sash")
+					item.rate = 0;
 				if(randomPokemon.name == "shedinja")
 				{
 					if(randomAbility.name == "Sturdy")
@@ -1297,9 +1300,18 @@ public class PokemonGenerator
 							item.rate = 0;
 					}
 				}
+				//	Apply items that require tanking only to tank pokemon.
+				if(randomPokemon.stats != "tank" && item.props.Contains("tank"))
+					item.rate = 0;
+				//	Some abilities are better when not switching, no Eject items for them.
+				if(randomAbility.props.Contains("stay") && (item.name == "Eject Pack" || item.name == "Eject Button"))
+					item.rate = 0;
 				//	Removes Air Balloon for Flying and Levitate pokemon.
 				if((randomPokemon.type1 == Type.Flying || randomPokemon.type2 == Type.Flying || randomAbility.name == "Levitate") && item.name == "Air Balloon")
 					item.rate *= 0;
+				//	Remove speed items on slow pokemon.
+				if(randomPokemon.moreInfo == "slow" && item.stats == "speed" && item.name != "Quick Claw" && item.name != "Custap Berry")
+					item.rate = 0;
 				//	Removes items that increase stats for abilities that don't want that (Contrary), also Z crystals might increase stats.
 				if(randomAbility.props.Contains("nostatraise") && (item.props.Contains("statraise") || item.props.Contains("crystal")))
 					item.rate *= 0;
@@ -1377,7 +1389,7 @@ public class PokemonGenerator
 					item.rate *= 40;
 				//	Timewarping abilities enable Booster Energy to appear.
 				if(randomAbility.props.Contains("booster") && item.props.Contains("booster"))
-					item.rate = 5000;
+					item.rate = 8000;
 				//	Sound abilities boost sound items (Throat Spray).
 				if(randomAbility.props.Contains("sound") && item.props.Contains("sound"))
 					item.rate *= 25;
@@ -1401,7 +1413,7 @@ public class PokemonGenerator
 					if(item.name == "Life Orb")
 						item.rate *= 50;
 					if(item.name == "Sticky Barb")
-						item.rate *= 5000;
+						item.rate = 5000;
 				}
 				//	Zoom Lens for slow pokemon only.
 				if(item.name == "Zoom Lens" && randomPokemon.moreInfo != "slow")
@@ -1448,7 +1460,8 @@ public class PokemonGenerator
 				if(banZcrystals && item.props.Contains("crystal"))
 					item.rate *= 0;
 			}
-			Item randomItem	= WeightRandomSelect.SelectRandomWeighted(items, item => item.rate);
+			Item tmpItem	= WeightRandomSelect.SelectRandomWeighted(items, item => item.rate);
+			Item randomItem	= new Item(tmpItem.name, tmpItem.stats, tmpItem.props, tmpItem.rate);
 
 			/* double perc = randomItem.rate / items.Sum(item => item.rate) * 100;
 			double avrg = randomItem.rate / (items.Sum(item => item.rate) / items.Count);
@@ -1504,6 +1517,7 @@ public class PokemonGenerator
 							case "Stone Plate":	move.type = Type.Rock;	break;
 							case "Toxic Plate":	move.type = Type.Poison;	break;
 							case "Zap Plate":	move.type = Type.Electric;	break;
+							default:	move.type = Type.Normal;	break;
 						}
 					}
 					if(move.name == "Revelation Dance")
@@ -1525,7 +1539,7 @@ public class PokemonGenerator
 					}
 					
 					//	Removes the move if already chosen.
-					if(pickedMoves.Contains(move))
+					if(pickedMoves.Any(m => m.name == move.name))
 						move.rate *= 0;
 
 					//	Doubles and Triples.
@@ -1988,6 +2002,13 @@ public class PokemonGenerator
 							move.rate = 0;
 					}
 
+					//	Disable switching moves on pokemons that have an ability that doesn't like switching.
+					if(randomAbility.props.Contains("stay") && move.props.Contains("switch"))
+					{
+						if(move.name != "Baton Pass")
+							move.rate = 0;
+					}
+
 					//	Aurora Veil rate.
 					if(move.name == "Aurora Veil" || move.name == "Blizzard")
 					{
@@ -2132,7 +2153,7 @@ public class PokemonGenerator
 						move.rate *= 0;
 					//	Increase rates of charging moves while Power Herb is held until one is picked otherwise nerf them or even remove them.
 					if(randomItem.props.Contains("charging") && move.props.Contains("charging") && !chargingMoveUsed){
-						move.rate *= 40; isUsed = true;}
+						move.rate *= 80; isUsed = true;}
 					if(!randomItem.props.Contains("charging") && move.props.Contains("charging"))
 						move.rate *= 0.25;
 					if(chargingMoveUsed && move.props.Contains("charging"))
@@ -2237,7 +2258,7 @@ public class PokemonGenerator
 					{
 						if(!chosenAbilities.Any(a => a == "Drizzle"))
 						{
-							move.rate *= 20;
+							move.rate *= 40;
 							isUsed = true;
 						}
 					}
@@ -2245,7 +2266,7 @@ public class PokemonGenerator
 					{
 						if(!chosenAbilities.Any(a => a == "Electric Surge" || a == "Hadron Engine") && randomItem.name != "Booster Energy")
 						{
-							move.rate *= 20;
+							move.rate *= 40;
 							isUsed = true;
 						}
 					}
@@ -2253,7 +2274,7 @@ public class PokemonGenerator
 					{
 						if(!chosenAbilities.Any(a => a == "Drought" || a == "Orichalcum Pulse") && randomItem.name != "Booster Energy")
 						{
-							move.rate *= 20;
+							move.rate *= 40;
 							isUsed = true;
 						}
 					}
@@ -2261,7 +2282,7 @@ public class PokemonGenerator
 					{
 						if(!chosenAbilities.Any(a => a == "Sand Spit" || a == "Sand Stream"))
 						{
-							move.rate *= 20;
+							move.rate *= 40;
 							isUsed = true;
 						}
 					}
@@ -2269,7 +2290,7 @@ public class PokemonGenerator
 					{
 						if(!chosenAbilities.Any(a => a == "Snow Warning") && !chosenMoves.Any(moves => moves.Any(move => move == "Chilly Reception")))
 						{
-							move.rate *= 20;
+							move.rate *= 40;
 							isUsed = true;
 						}
 					}
@@ -2280,7 +2301,7 @@ public class PokemonGenerator
 					if(move.name == "Weather Ball")
 					{
 						if(randomAbility.props.Contains("weather"))
-							move.rate *= 20;
+							move.rate *= 40;
 						else
 							move.rate *= 0;
 					}
@@ -2352,7 +2373,8 @@ public class PokemonGenerator
 						move.rate *= 0;
 				}
 
-				Move randomMove = WeightRandomSelect.SelectRandomWeighted(moves, move => move.rate);
+				Move tmpMove 	= WeightRandomSelect.SelectRandomWeighted(moves, move => move.rate);
+				Move randomMove	= new Move(tmpMove.name, tmpMove.type, tmpMove.category, tmpMove.power, tmpMove.accuracy, tmpMove.generation, tmpMove.props, tmpMove.rate);
 				pickedMoves.Add(randomMove);
 				randomMoves.Add(randomMove.name);
 				if(randomMove.props.Contains("charging"))
@@ -2716,7 +2738,7 @@ public class PokemonGenerator
 									nature = posNat[rSpec.Next(0, posNat.Length)];
 								}
 							}
-							if(nSpec > nPhys)
+							else if(nSpec > nPhys)
 							{
 								if(nPhys == 0)
 								{
