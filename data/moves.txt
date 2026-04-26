@@ -35,7 +35,7 @@ Beak Blast|Flying|Physical|100|100|7|true;status;negprio;nocontact
 Beat Up|Dark|Physical|10|100|2|true;nocontact
 Behemoth Bash|Steel|Physical|100|100|8|true;lowpp
 Behemoth Blade|Steel|Physical|100|100|8|true;slicing;lowpp
-Belly Drum|Normal|Status|0|100|2|true;physical
+Belly Drum|Normal|Status|0|100|2|true;physical;allin
 Bite|Dark|Physical|60|100|1|false;biting;prob30
 Bitter Blade|Fire|Physical|90|100|9|true;slicing;triage
 Bitter Malice|Ghost|Special|75|100|8|true
@@ -75,7 +75,7 @@ Chilly Reception|Ice|Status|0|100|9|true;tank;switch
 Chloroblast|Grass|Special|150|95|9|true;magicguard;lowpp
 Circle Throw|Fighting|Physical|60|90|5|true;tank;negprio
 Clanging Scales|Dragon|Special|110|100|7|true;sound;ownstatlower;lowpp
-Clangorous Soul|Dragon|Status|0|100|8|true;sound;offence;defence;lowpp;speed
+Clangorous Soul|Dragon|Status|0|100|8|true;sound;offence;defence;lowpp;speed;allin
 Clear Smog|Poison|Special|50|100|5|true;tank;terapoison
 Close Combat|Fighting|Physical|120|100|4|true;ownstatlower;lowpp
 Coil|Poison|Status|0|100|5|true;physical;defence
@@ -102,7 +102,6 @@ Defog|Flying|Status|0|100|4|true;tank
 Destiny Bond|Ghost|Status|0|100|2|true;lowpp
 Detect|Fighting|Status|0|100|2|true;lowpp
 Diamond Storm|Rock|Physical|100|95|6|true;ownstatraise;lowpp;nocontact;prob50
-Dig|Ground|Physical|80|100|1|false;charging
 Dire Claw|Poison|Physical|80|100|8|true;crit;status
 Disable|Normal|Status|0|100|1|true
 Discharge|Electric|Special|80|100|4|true;status;prob30
@@ -117,7 +116,7 @@ Dragon Breath|Dragon|Special|60|100|2|false;status;prob30
 Dragon Claw|Dragon|Physical|80|100|3|true
 Dragon Dance|Dragon|Status|0|100|3|true;physical;speed
 Dragon Darts|Dragon|Physical|50|100|8|true;nocontact
-Dragon Energy|Dragon|Special|150|100|8|true;lowpp
+Dragon Energy|Dragon|Special|150|100|8|true;lowpp;highhp
 Dragon Hammer|Dragon|Physical|90|100|7|true
 Dragon Pulse|Dragon|Special|85|100|4|true;pulse
 Dragon Rush|Dragon|Physical|100|75|4|true;prob20
@@ -142,7 +141,7 @@ Encore|Normal|Status|0|100|2|true;lowpp
 Endeavor|Normal|Physical|0|100|3|true;direct;lowpp
 Endure|Normal|Status|0|100|2|true
 Energy Ball|Grass|Special|90|100|4|true;prob10
-Eruption|Fire|Special|150|100|3|true;lowpp
+Eruption|Fire|Special|150|100|3|true;lowpp;highhp
 Esper Wing|Psychic|Special|80|100|9|true;crit;ownstatraise
 Expanding Force|Psychic|Special|80|100|8|true;terrain
 Explosion|Normal|Physical|250|100|1|true;nocontact
@@ -150,14 +149,14 @@ Extrasensory|Psychic|Special|80|100|3|true;prob10
 Extreme Speed|Normal|Physical|80|100|2|true;lowpp
 Facade|Normal|Physical|70|100|3|true
 Fake Out|Normal|Physical|40|100|3|true
-Fake Tears|Dark|Status|0|100|3|true
+Fake Tears|Dark|Status|0|100|3|false
 False Surrender|Dark|Physical|80|100|8|true
 Feather Dance|Flying|Status|0|100|3|true
 Fell Stinger|Bug|Physical|50|100|6|true;ownstatraise;terabug
 Fickle Beam|Dragon|Special|80|100|8|true;lowpp
 Fiery Dance|Fire|Special|80|100|5|true;ownstatraise;prob50
 Fiery Wrath|Dark|Special|90|100|8|true;prob20
-Fillet Away|Normal|Status|0|100|9|true;offence;speed
+Fillet Away|Normal|Status|0|100|9|true;offence;speed;allin
 Final Gambit|Fighting|Special|0|100|5|true;direct
 Fire Blast|Fire|Special|110|85|1|true;lowpp;prob10
 Fire Fang|Fire|Physical|65|95|4|false;biting;prob10
@@ -401,7 +400,7 @@ Shadow Punch|Ghost|Physical|60|100|3|false;punching
 Shadow Sneak|Ghost|Physical|40|100|4|true;posprio
 Shed Tail|Normal|Status|0|100|9|true;tank;switch
 Shell Side Arm|Poison|Special|90|100|8|true
-Shell Smash|Normal|Status|0|100|5|true;ownstatlower;offence;speed
+Shell Smash|Normal|Status|0|100|5|true;ownstatlower;offence;speed;allin
 Shell Trap|Fire|Special|150|100|7|true;negprio;lowpp
 Shift Gear|Steel|Status|0|100|5|true;physical;speed
 Shore Up|Ground|Status|0|100|7|true;triage;lowpp;sand
@@ -514,7 +513,7 @@ Wake-Up Slap|Fighting|Physical|70|100|4|true
 Water Pledge|Water|Special|80|100|5|true;doubles
 Water Pulse|Water|Special|60|100|3|false;pulse;prob20
 Water Shuriken|Water|Special|15|100|6|true;multihit;posprio
-Water Spout|Water|Special|150|100|3|true;lowpp
+Water Spout|Water|Special|150|100|3|true;lowpp;highhp
 Waterfall|Water|Physical|80|100|1|true;prob20
 Wave Crash|Water|Physical|120|100|9|true;recoil
 Weather Ball|Normal|Special|50|100|3|true

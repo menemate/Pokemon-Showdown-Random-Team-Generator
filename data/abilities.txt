@@ -171,6 +171,7 @@ Solid Rock|weakness|4|true
 Soul-Heart|special|7|true
 Soundproof|balance|3|true
 Speed Boost|speed|3|true
+Spicy Spray|status|9|true
 Stakeout|offence|7|true
 Stamina|defence|7|true
 Static|status|3|true

@@ -114,19 +114,19 @@ public class PokemonGenerator
 		bool banZcrystals			= false;		//	When true, Z-Crystal won't appear, it becomes true after 1 Z-Crystal is on the team.
 		bool notSingles				= false;		//	When true, doubles only moves appear
 		string currentTerrain		= "none";		//	Will automatically change to "grass", "electric", "psychic" or "misty".
-		int nPokemons				= 5;			//	How many pokemon in the team.
+		int nPokemons				= 6;			//	How many pokemon in the team.
 
 		//	Give pokemon a level.
 		//	Calculation is (levelStart + Math.Min(255, Math.Round((1 - (double)(randomPokemon.bst - levelMinBST) / (levelMaxBST - levelMinBST))  * levelMult)))
 		bool useLevels				= false;		//	Enable different levels per pokemon.
 		int leveledPokemons			= 12;			//	How many pokemons have a level, if the value is 0, only the first pokemon has a level.
-		int levelStart				= 150;			//	Minimum possible level of a pokemon.
+		int levelStart				= 100;			//	Minimum possible level of a pokemon.
 		int levelMinBST				= 400;			//	Lowest BST to compare.
 		int levelMaxBST				= 720;			//	Highest BST to compare.
-		double levelMult			= 50;			//	Pokemon from Lowest to Highest BST range within levelStart and levelStart + levelMult
+		double levelMult			= 25;			//	Pokemon from Lowest to Highest BST range within levelStart and levelStart + levelMult
 
 		//	Filter teams to make sure they use only certain pokemon, abilities or moves
-		bool restrictMons			= true;		//	When true, uses includeMonTypes, includeMonGens, includeMonBST and includeMonName as filters.
+		bool restrictMons			= false;		//	When true, uses includeMonTypes, includeMonGens, includeMonBST and includeMonName as filters.
 		bool restrictAbils			= false;		//	When true, uses includeAbilGens and includeAbilName as filters.
 		bool restrictMoves			= false;		//	When true, uses includeMoveTypes, includeMoveGens and includeMoveName as filters.
 
@@ -147,17 +147,21 @@ public class PokemonGenerator
 		};
 		List<Type> includeMoveTypes = new List<Type>
 		{
-			Type.Psychic, Type.Bug, Type.Ghost, Type.Ice, Type.Steel, Type.Grass
+			Type.Normal, Type.Fighting, Type.Flying, Type.Poison,
+			Type.Ground, Type.Rock, Type.Bug, Type.Ghost,
+			Type.Steel, Type.Fire, Type.Water, Type.Grass,
+			Type.Electric, Type.Psychic, Type.Ice, Type.Dragon,
+			Type.Dark, Type.Fairy, Type.Nothing
 		};
 		List<int> includeMonGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
 		List<int> includeMoveGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
 		List<int> includeAbilGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
 
-		int[] includeMonBST	= {0, 480};	//	Minimum and maximum Base Stat Total to include in the team, min and max values are included.
+		int[] includeMonBST	= {0, 1000};	//	Minimum and maximum Base Stat Total to include in the team, min and max values are included.
 
 /* "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" */
-		List<string> includeMonName		= new List<string>{ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
-		List<string> includeAbilName	= new List<string>{ "protos"};
+		List<string> includeMonName		= new List<string>{ "su", "mo", "me", "ve", "ma", "ju", "sa", "ra", "ke"};
+		List<string> includeAbilName	= new List<string>{ "su", "mo", "me", "ve", "ma", "ju", "sa", "ra", "ke"};
 		List<string> includeMoveName	= new List<string>{ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
 
@@ -2166,6 +2170,22 @@ public class PokemonGenerator
 						if(move.category == 0 && move.props.Contains("nocontact"))
 							move.rate = 0;	
 					}
+					if(move.props.Contains("highhp"))
+					{
+						if(randomItem.props.Contains("choiced"))
+							move.rate *= 5;
+						else
+							move.rate = 0;
+					}
+
+					//	When using an All-In setup move, disable status moves.
+					if(pickedMoves.Any(p => p.props.Contains("allin")))
+					{
+						if(move.category == 2)
+							move.rate = 0;
+					}
+					if(move.props.Contains("allin") && pickedMoves.Count > 1)
+						move.rate = 0;
 
 					//	Disable Trick Room for non-slow pokemons or persistent.
 					if(move.name == "Trick Room" && randomPokemon.moreInfo != "slow" && randomAbility.name != "Persistent")
@@ -2383,7 +2403,7 @@ public class PokemonGenerator
 					itemMoveFound	= true;
 				if(randomMove.props.Contains("clay"))
 					clayRate += 20;
-				if(randomMove.name == "Tera Blast")
+				if(randomMove.name == "Tera Blast" || randomMove.name == "Revelation Dance")
 				{
 					if(randomAbility.props.Contains("ownstatlower"))
 					{

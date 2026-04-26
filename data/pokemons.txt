@@ -558,7 +558,7 @@ Tauros-Paldea-Combat|Fighting|Nothing|phys|9|490|true|none
 tentacruel|Water|Poison|mixed|1|515|true|none
 terapagos|Normal|Nothing|tank|9|450|true|none
 terrakion|Rock|Fighting|phys|5|580|true|heavy
-thievul|Dark|Nothing|mixed|8|455|true|none
+thievul|Dark|Nothing|spec|8|455|true|none
 throh|Fighting|Nothing|phys|5|465|true|slow
 thundurus|Electric|Flying|mixed|5|580|true|none
 ting-lu|Dark|Ground|phys|9|570|true|heavy
