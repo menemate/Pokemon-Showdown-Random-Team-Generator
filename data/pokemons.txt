@@ -4,7 +4,7 @@ accelgor|Bug|Nothing|spec|5|495|true|fast
 aegislash|Steel|Ghost|tank|6|500|true|none
 aerodactyl|Rock|Flying|phys|1|515|true|fast
 aggron|Steel|Rock|tank|3|530|true|phys
-alakazam|Psychic|Nothing|spec|1|500|true|none
+alakazam|Psychic|Nothing|spec|1|500|true|frail
 alcremie|Fairy|Nothing|spec|8|495|true|none
 alomomola|Water|Nothing|tank|5|470|true|phys
 altaria|Dragon|Flying|tank|3|490|true|none
@@ -424,8 +424,8 @@ phione|Water|Nothing|any|4|480|true|none
 pidgeot|Normal|Flying|mixed|1|479|true|none
 piloswine|Ice|Ground|phys|2|450|false|slow
 pincurchin|Electric|Nothing|any|1|435|true|slow
-pikachu|Electric|Nothing|mixed|1|320|false|none
-pikachu-starter|Electric|Nothing|mixed|7|430|true|none
+pikachu|Electric|Nothing|mixed|1|320|false|frail
+pikachu-starter|Electric|Nothing|mixed|7|430|true|frail
 pinsir|Bug|Nothing|phys|1|500|true|none
 plusle|Electric|Nothing|spec|3|405|true|none
 politoed|Water|Nothing|any|2|500|true|none
@@ -564,7 +564,7 @@ thundurus|Electric|Flying|mixed|5|580|true|none
 ting-lu|Dark|Ground|phys|9|570|true|heavy
 tinkaton|Fairy|Steel|any|9|506|true|none
 toedscruel|Ground|Grass|mixed|9|515|true|none
-togedemaru|Electric|Steel|mixed|7|435|true|none
+togedemaru|Electric|Steel|phys|7|435|true|none
 togekiss|Fairy|Flying|spec|4|545|true|none
 torkoal|Fire|Nothing|tank|3|470|true|slow
 tornadus|Flying|Nothing|mixed|5|580|true|none

@@ -123,12 +123,12 @@ public class PokemonGenerator
 		int levelStart				= 100;			//	Minimum possible level of a pokemon.
 		int levelMinBST				= 400;			//	Lowest BST to compare.
 		int levelMaxBST				= 720;			//	Highest BST to compare.
-		double levelMult			= 25;			//	Pokemon from Lowest to Highest BST range within levelStart and levelStart + levelMult
+		double levelMult			= 24;			//	Pokemon from Lowest to Highest BST range within levelStart and levelStart + levelMult
 
 		//	Filter teams to make sure they use only certain pokemon, abilities or moves
-		bool restrictMons			= false;		//	When true, uses includeMonTypes, includeMonGens, includeMonBST and includeMonName as filters.
-		bool restrictAbils			= false;		//	When true, uses includeAbilGens and includeAbilName as filters.
-		bool restrictMoves			= false;		//	When true, uses includeMoveTypes, includeMoveGens and includeMoveName as filters.
+		bool restrictMons			= false;	//	When true, uses includeMonTypes, includeMonGens, includeMonBST and includeMonName as filters.
+		bool restrictAbils			= false;	//	When true, uses includeAbilGens and includeAbilName as filters.
+		bool restrictMoves			= false;	//	When true, uses includeMoveTypes, includeMoveGens and includeMoveName as filters.
 
 /*
 	Type.Normal, Type.Fighting, Type.Flying, Type.Poison,
@@ -140,10 +140,10 @@ public class PokemonGenerator
 		List<Type> includeMonTypes = new List<Type>
 		{
 			Type.Normal, Type.Fighting, Type.Flying, Type.Poison,
-			Type.Ground, Type.Rock, Type.Bug, Type.Ghost,
-			Type.Steel, Type.Fire, Type.Water, Type.Grass,
-			Type.Electric, Type.Psychic, Type.Ice, Type.Dragon,
-			Type.Dark, Type.Fairy, Type.Nothing
+	Type.Ground, Type.Rock, Type.Bug, Type.Ghost,
+	Type.Steel, Type.Fire, Type.Water, Type.Grass,
+	Type.Electric, Type.Psychic, Type.Ice, Type.Dragon,
+	Type.Dark, Type.Fairy, Type.Nothing
 		};
 		List<Type> includeMoveTypes = new List<Type>
 		{
@@ -154,15 +154,15 @@ public class PokemonGenerator
 			Type.Dark, Type.Fairy, Type.Nothing
 		};
 		List<int> includeMonGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
-		List<int> includeMoveGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
 		List<int> includeAbilGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
+		List<int> includeMoveGens	= new List<int>{	1, 2, 3, 4, 5, 6, 7, 8, 9	};
 
 		int[] includeMonBST	= {0, 1000};	//	Minimum and maximum Base Stat Total to include in the team, min and max values are included.
 
 /* "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" */
-		List<string> includeMonName		= new List<string>{ "su", "mo", "me", "ve", "ma", "ju", "sa", "ra", "ke"};
-		List<string> includeAbilName	= new List<string>{ "su", "mo", "me", "ve", "ma", "ju", "sa", "ra", "ke"};
-		List<string> includeMoveName	= new List<string>{ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+		List<string> includeMonName		= new List<string>{ "zoroark", "zygarde-1", "arceus", "silvally"};
+		List<string> includeAbilName	= new List<string>{ "Competitive", "Thermal Exchange", "Flame Body", "As One (Glastrier)", "Galvanize", "Guts", "Imposter", "Marvel Scale", "Queenly", "Quick Draw", "Serene", "Super Luck", "Triage", "Water V"};
+		List<string> includeMoveName	= new List<string>{ "u", "v", "z"};
 
 
 		var lines			= new List<string>();
@@ -541,7 +541,7 @@ public class PokemonGenerator
 					case "scolipede":	megaType = "scolipite";		break;
 					case "scrafty":	megaType = "scraftinite"; randomPokemon.stats = "phys";		break;
 					case "emboar":	megaType = "emboarite"; randomPokemon.stats = "phys";		break;
-					case "chanderlure":	megaType = "chanderlurite";		break;
+					case "chandelure":	megaType = "chandelurite";		break;
 					case "eelektross":	megaType = "eelektrossite";	randomPokemon.moreInfo = "none";	break;
 					case "chesnaught":	megaType = "chesnaughtite";	randomPokemon.moreInfo = "slow";	break;
 					case "greninja":	megaType = "greninjite"; randomPokemon.moreInfo = "fast";		break;
@@ -1153,6 +1153,8 @@ public class PokemonGenerator
 					case "phys":
 						if(abil.stats == "special")
 							abil.rate *= 0;
+						if(abil.props.Contains("sound"))
+							abil.rate = 0;
 					break;
 					//	No physical oriented abilities for special attackers.
 					case "spec":
@@ -1492,40 +1494,56 @@ public class PokemonGenerator
 			bool itemMoveFound			= false;
 			bool chargingMoveUsed		= false;
 			int clayRate				= 0;
+			List<Type> moveTypes = new List<Type>
+			{
+				Type.Normal, Type.Fighting, Type.Flying, Type.Poison,
+				Type.Ground, Type.Rock, Type.Bug, Type.Ghost,
+				Type.Steel, Type.Fire, Type.Water, Type.Grass,
+				Type.Electric, Type.Psychic, Type.Ice, Type.Dragon,
+				Type.Dark, Type.Fairy
+			};
+			foreach(Move move in moves)
+			{
+				//	Change move types.
+				if (move.name == "Judgment")
+				{
+					switch (randomItem.name)
+					{
+						case "Draco Plate":	move.type = Type.Dragon;	break;
+						case "Dread Plate":	move.type = Type.Dark;	break;
+						case "Earth Plate":	move.type = Type.Ground;	break;
+						case "Fist Plate":	move.type = Type.Fighting;	break;
+						case "Flame Plate":	move.type = Type.Fire;	break;
+						case "Icicle Plate":	move.type = Type.Ice;	break;
+						case "Insect Plate":	move.type = Type.Bug;	break;
+						case "Iron Plate":	move.type = Type.Steel;	break;
+						case "Meadow Plate":	move.type = Type.Grass;	break;
+						case "Mind Plate":	move.type = Type.Psychic;	break;
+						case "Pixie Plate":	move.type = Type.Fairy;	break;
+						case "Sky Plate":	move.type = Type.Flying;	break;
+						case "Splash Plate":	move.type = Type.Water;	break;
+						case "Spooky Plate":	move.type = Type.Ghost;	break;
+						case "Stone Plate":	move.type = Type.Rock;	break;
+						case "Toxic Plate":	move.type = Type.Poison;	break;
+						case "Zap Plate":	move.type = Type.Electric;	break;
+						default:	move.type = Type.Normal;	break;
+					}
+				}
+				if(move.name == "Revelation Dance")
+					move.type = randomPokemon.type1;
+			}
+			bool attempted = false;
 			for(int j = 0; j < 4; j++)
 			{
 				foreach(Move move in moves)
 				{
 					move.rate = 100;
 					bool isUsed = false;
-
-					//	Change move types.
-					if (randomItem.props.Contains("plate") && move.name == "Judgment")
-					{
-						switch (randomItem.name)
-						{
-							case "Draco Plate":	move.type = Type.Dragon;	break;
-							case "Dread Plate":	move.type = Type.Dark;	break;
-							case "Earth Plate":	move.type = Type.Ground;	break;
-							case "Fist Plate":	move.type = Type.Fighting;	break;
-							case "Flame Plate":	move.type = Type.Fire;	break;
-							case "Icicle Plate":	move.type = Type.Ice;	break;
-							case "Insect Plate":	move.type = Type.Bug;	break;
-							case "Iron Plate":	move.type = Type.Steel;	break;
-							case "Meadow Plate":	move.type = Type.Grass;	break;
-							case "Mind Plate":	move.type = Type.Psychic;	break;
-							case "Pixie Plate":	move.type = Type.Fairy;	break;
-							case "Sky Plate":	move.type = Type.Flying;	break;
-							case "Splash Plate":	move.type = Type.Water;	break;
-							case "Spooky Plate":	move.type = Type.Ghost;	break;
-							case "Stone Plate":	move.type = Type.Rock;	break;
-							case "Toxic Plate":	move.type = Type.Poison;	break;
-							case "Zap Plate":	move.type = Type.Electric;	break;
-							default:	move.type = Type.Normal;	break;
-						}
-					}
-					if(move.name == "Revelation Dance")
-						move.type = randomPokemon.type1;
+					
+					//	Set rates to weight.
+					int totMoves = moves.Count;
+					int nSame = moves.Count(m => m.type == move.type && m.category == m.category);
+					move.rate = 100 / (nSame + 1) * 100;
 
 					if (restrictMoves)
 					{
@@ -1791,12 +1809,33 @@ public class PokemonGenerator
 					if(randomPokemon.type1 == move.type || randomPokemon.type2 == move.type)
 						move.rate *= 40 * isAdapt;
 
-					//	Guaranteed damaging move if the previously chosen 3 moves were status moves.
-					if(!pickedMoves.Any(pick => pick.category == 0 || pick.category == 1) && j == 3)
+					if (j == 3)
 					{
-						if(move.category == 2)
-							move.rate *= 0;
+						int countStatusPrio = pickedMoves.Count(m => m.category == 2 || m.props.Contains("posprio") || m.props.Contains("negprio") || m.power < 60);
+						
+						//	Guaranteed damaging move if the previously chosen 3 moves were status moves.
+						if(countStatusPrio >= 3)
+						{
+							if(move.category == 2 || move.props.Contains("posprio") || move.props.Contains("negprio") || move.power < 60)
+								move.rate = 0;
+						}
+
+						int countOffence = pickedMoves.Count(m => m.category == 0 || m.category == 1);
+						if(countOffence >= 3 && (move.category == 0 || move.category == 1))
+						{
+							int statusChance = 100;
+							if(randomItem.props.Contains("choiced") || randomItem.props.Contains("assault") || randomItem.props.Contains("plate") || randomItem.props.Contains("crystal") || randomAbility.props.Contains("gorilla"))
+								statusChance -= 100;
+							if(randomAbility.stats == "offence" || randomAbility.stats == "physical" || randomAbility.stats == "special")
+								statusChance -= 25;
+							if(statusChance > 0)
+							{
+								if(Probability.Roll(statusChance))
+									move.rate = 0;
+							}
+						}
 					}
+
 
 					//	Reduce or Boost STATUS moves depending on how many there are for each type.
 					/*	Normal 0.3 (As of 04/04/26) 48 Status
@@ -1817,11 +1856,11 @@ public class PokemonGenerator
 						Dragon 1.3
 						Dark 0.5
 						Fairy 1.0 */
-					if(move.category == 2 && (move.type == randomPokemon.type1 || move.type == randomPokemon.type2))
+					/* if(move.category == 2 && (move.type == randomPokemon.type1 || move.type == randomPokemon.type2))
 					{
 						int nStatus = moves.Count(m => m.type == move.type && m.category == 2);
 						move.rate *= Math.Max(0.3, 1.5 - (0.1 * nStatus));
-					}
+					} */
 
 					//	Boost offensive damaging moves of a certain type needed by the ability.
 					if (randomAbility.props.Contains("type"))
@@ -1829,7 +1868,7 @@ public class PokemonGenerator
 						if(randomAbility.props.Any(p => p == move.type.ToString().ToLower()) && move.category != 2)
 						{
 							if(!pickedMoves.Any(picked => picked.type == move.type && picked.category != 2))
-								move.rate *= 12 * (j + 1);
+								move.rate *= 16 * (j + 1);
 						}
 					}
 
@@ -1852,7 +1891,7 @@ public class PokemonGenerator
 					else if(randomItem.props.Contains("plate"))
 					{
 						// Check if any props of item has same type as the move, and the move is offensive.
-						if(randomItem.props.Any(p => p == move.type.ToString().ToLower()) && move.category != 2)
+						if(randomItem.props.Any(p => p == move.type.ToString().ToLower()) && move.category != 2 && !move.props.Contains("direct"))
 						{
 							if(!itemMoveFound)
 								move.rate *= 5 * (j + 1);
@@ -1884,6 +1923,19 @@ public class PokemonGenerator
 						if((move.accuracy >= 100 - accuracy && move.accuracy <= 80) || move.props.Contains("noguard")){
 							move.rate *= accuracy / 2; isUsed = true;
 						}
+					}
+
+					//	Gravity rate reduced.
+					if(move.name == "Gravity")
+					{
+						List<Type> weakFlFi = new List<Type>()
+						{
+							Type.Normal, Type.Rock, Type.Bug, Type.Steel, Type.Grass, Type.Ice, Type.Dark
+						};
+						if(weakFlFi.Contains(randomPokemon.type1) || weakFlFi.Contains(randomPokemon.type2))
+							move.rate *= 1;
+						else
+							move.rate *= 0.1;
 					}
 
 					//	Probability moves handling.
@@ -2036,15 +2088,22 @@ public class PokemonGenerator
 					//	Rest Sleep Talk strategies.
 					if(move.name == "Rest" || move.name == "Sleep Talk")
 					{
+						move.rate *= 5;
 						if(pickedMoves.Any(move => move.name == "Rest" || move.name == "Sleep Talk"))
 							move.rate *= 400;
 						else if(j > 2)
+							move.rate = 0;
+						if(randomItem.props.Contains("crystal") || randomItem.props.Contains("plate"))
+							move.rate = 0;
+						if(randomAbility.name == "Purifying Salt")
 							move.rate = 0;
 					}
 					if(pickedMoves.Any(move => move.name == "Rest" || move.name == "Sleep Talk"))
 					{
 						if(move.props.Contains("triage") && move.name != "Rest")
 							move.rate *= 0;
+						if((!pickedMoves.Any(move => move.name == "Rest") || !pickedMoves.Any(move => move.name == "Sleep Talk")) && move.name != "Rest" && move.name != "Sleep Talk" && randomAbility.name != "Shed Skin")
+							move.rate = 0;
 					}
 
 					//	Remove more than one setup move of same category.
@@ -2149,7 +2208,7 @@ public class PokemonGenerator
 					if(randomItem.props.Contains("assault") && move.category == 2)
 						move.rate *= 0;
 					//	Removes Water and Fire moves for abilities that nerf these types.
-					if(randomAbility.props.Contains("nowater") && move.type == Type.Water)
+					if(randomAbility.props.Contains("nowater") && move.type == Type.Water && move.name != "Hydro Steam")
 						move.rate *= 0;
 					if(randomAbility.props.Contains("nofire") && move.type == Type.Fire)
 						move.rate *= 0;
@@ -2278,7 +2337,7 @@ public class PokemonGenerator
 					{
 						if(!chosenAbilities.Any(a => a == "Drizzle"))
 						{
-							move.rate *= 40;
+							move.rate *= 1000;
 							isUsed = true;
 						}
 					}
@@ -2286,7 +2345,7 @@ public class PokemonGenerator
 					{
 						if(!chosenAbilities.Any(a => a == "Electric Surge" || a == "Hadron Engine") && randomItem.name != "Booster Energy")
 						{
-							move.rate *= 40;
+							move.rate *= 1000;
 							isUsed = true;
 						}
 					}
@@ -2294,7 +2353,7 @@ public class PokemonGenerator
 					{
 						if(!chosenAbilities.Any(a => a == "Drought" || a == "Orichalcum Pulse") && randomItem.name != "Booster Energy")
 						{
-							move.rate *= 40;
+							move.rate *= 1000;
 							isUsed = true;
 						}
 					}
@@ -2302,7 +2361,7 @@ public class PokemonGenerator
 					{
 						if(!chosenAbilities.Any(a => a == "Sand Spit" || a == "Sand Stream"))
 						{
-							move.rate *= 40;
+							move.rate *= 1000;
 							isUsed = true;
 						}
 					}
@@ -2310,7 +2369,7 @@ public class PokemonGenerator
 					{
 						if(!chosenAbilities.Any(a => a == "Snow Warning") && !chosenMoves.Any(moves => moves.Any(move => move == "Chilly Reception")))
 						{
-							move.rate *= 40;
+							move.rate *= 1000;
 							isUsed = true;
 						}
 					}
@@ -2440,6 +2499,14 @@ public class PokemonGenerator
 						}
 					}
 				}
+				if(randomMove.name == "Metronome" && j == 3 && !attempted)
+				{
+					attempted = true;
+					j = -1;
+					Console.WriteLine("Metronome found as last move of " + randomPokemon.name);
+					pickedMoves.Clear();
+					randomMoves.Clear();
+				}
 			}
 
 			if(clayRate > 0)
@@ -2541,18 +2608,18 @@ public class PokemonGenerator
 						nature = posNat[rPhys.Next(0, posNat.Length)];
 
 						evs = new Dictionary<string, int> {{ "HP", 60 },{ "Atk", 164 },{ "Def", 60 },{ "SpA", 0 },{ "SpD", 60 },{ "Spe", 164 }};
-						if(randomPokemon.moreInfo == "fast") {
+						if(randomPokemon.moreInfo == "fast" && randomItem.name != "Focus Sash" && randomAbility.name != "Sturdy") {
 							evs = new Dictionary<string, int> {{ "HP", 0 },{ "Atk", 252 },{ "Def", 0 },{ "SpA", 0 },{ "SpD", 4 },{ "Spe", 252 }};
 							nature = "Jolly";
 						}
-						else if(randomPokemon.moreInfo == "slow" || pickedMoves.Any(m => m.name == "Trick Room"))
+						else if((randomPokemon.moreInfo == "slow" || pickedMoves.Any(m => m.name == "Trick Room")) && randomItem.name != "Focus Sash" && randomAbility.name != "Sturdy")
 						{
 							evs = new Dictionary<string, int> {{ "HP", 136 },{ "Atk", 252 },{ "Def", 60 },{ "SpA", 0 },{ "SpD", 60 },{ "Spe", 0 }};
 							nature = "Brave";
 							if(pickedMoves.Any(m => m.name == "Gyro Ball" || m.name == "Trick Room"))
 								ivs = new Dictionary<string, int>{ { "Atk", 31 },{ "Spe", 0 }};
 						}
-						else if(randomPokemon.moreInfo == "frail")
+						else if(randomPokemon.moreInfo == "frail" || randomItem.name == "Focus Sash" || randomAbility.name == "Sturdy")
 						{
 							evs = new Dictionary<string, int> {{ "HP", 0 },{ "Atk", 252 },{ "Def", 0 },{ "SpA", 0 },{ "SpD", 4 },{ "Spe", 252 }};
 						}
@@ -2566,18 +2633,18 @@ public class PokemonGenerator
 
 						evs = new Dictionary<string, int> {{ "HP", 60 },{ "Atk", 0 },{ "Def", 60 },{ "SpA", 164 },{ "SpD", 60 },{ "Spe", 164 }};
 						ivs = new Dictionary<string, int>{ { "Atk", 0 },{ "Spe", 31 }};
-						if(randomPokemon.moreInfo == "fast") {
+						if(randomPokemon.moreInfo == "fast" && randomItem.name != "Focus Sash" && randomAbility.name != "Sturdy") {
 							evs = new Dictionary<string, int> {{ "HP", 0 },{ "Atk", 0 },{ "Def", 0 },{ "SpA", 252 },{ "SpD", 4 },{ "Spe", 252 }};
 							nature = "Timid";
 						}
-						else if(randomPokemon.moreInfo == "slow" || pickedMoves.Any(m => m.name == "Trick Room"))
+						else if((randomPokemon.moreInfo == "slow" || pickedMoves.Any(m => m.name == "Trick Room")) && randomItem.name != "Focus Sash" && randomAbility.name != "Sturdy")
 						{
 							evs = new Dictionary<string, int> {{ "HP", 136 },{ "Atk", 0 },{ "Def", 60 },{ "SpA", 252 },{ "SpD", 60 },{ "Spe", 0 }};
 							nature = "Quiet";
 							if(pickedMoves.Any(m => m.name == "Gyro Ball" || m.name == "Trick Room"))
 								ivs = new Dictionary<string, int>{ { "Atk", 0 },{ "Spe", 0 }};
 						}
-						else if(randomPokemon.moreInfo == "frail")
+						else if(randomPokemon.moreInfo == "frail" || randomItem.name == "Focus Sash" || randomAbility.name == "Sturdy")
 						{
 							evs = new Dictionary<string, int> {{ "HP", 0 },{ "Atk", 0 },{ "Def", 0 },{ "SpA", 252 },{ "SpD", 4 },{ "Spe", 252 }};
 						}
@@ -2650,7 +2717,7 @@ public class PokemonGenerator
 						if(352 - evs["Atk"] - evs["SpA"] > 252)
 							evs["HP"] += 352 - evs["Atk"] - evs["SpA"] - 252;
 
-						if(randomPokemon.moreInfo == "fast") {
+						if(randomPokemon.moreInfo == "fast" && randomItem.name != "Focus Sash" && randomAbility.name != "Sturdy") {
 							int speDif = 252 - evs["Spe"];
 							evs["Spe"] = 252;
 							for(int h = 0; h < speDif; h += 4)
@@ -2670,7 +2737,7 @@ public class PokemonGenerator
 							else
 								nature = "Hasty";
 						}
-						else if(randomPokemon.moreInfo == "slow" || pickedMoves.Any(m => m.name == "Trick Room"))
+						else if((randomPokemon.moreInfo == "slow" || pickedMoves.Any(m => m.name == "Trick Room")) && randomItem.name != "Focus Sash" && randomAbility.name != "Sturdy")
 						{
 							int speDif = evs["Spe"];
 							int hpDif = 0;
@@ -2696,7 +2763,7 @@ public class PokemonGenerator
 								nature = "Sassy";
 							}
 						}
-						else if(randomPokemon.moreInfo == "frail")
+						else if(randomPokemon.moreInfo == "frail" || randomItem.name == "Focus Sash" || randomAbility.name == "Sturdy")
 						{
 							evs = new Dictionary<string, int> {{ "HP", 0 },{ "Atk", 0 },{ "Def", 0 },{ "SpA", 0 },{ "SpD", 4 },{ "Spe", 252 }};
 							if(nPhys > nSpec)
@@ -2807,6 +2874,8 @@ public class PokemonGenerator
 					}
 					break;
 			}
+			if(randomAbility.name == "Imposter" || pickedMoves.Any(m => m.name == "Transform"))
+				evs = new Dictionary<string, int> {{ "HP", 252 },{ "Atk", 0 },{ "Def", 0 },{ "SpA", 0 },{ "SpD", 4 },{ "Spe", 252 }};
 
 			lines.Add("EVs: " + evs["HP"] + " HP / " + evs["Atk"] + " Atk / " + evs["Def"] + " Def / " + evs["SpA"] + " SpA / " + evs["SpD"] + " SpD / " + evs["Spe"] + " Spe");
 			lines.Add(nature + " Nature");

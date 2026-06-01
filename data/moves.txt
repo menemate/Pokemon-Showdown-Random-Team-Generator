@@ -136,7 +136,7 @@ Eerie Impulse|Electric|Status|0|100|6|true
 Eerie Spell|Psychic|Special|80|100|8|true;sound;lowpp
 Electro Ball|Electric|Special|90|100|5|true
 Electro Drift|Electric|Special|100|100|9|true;lowpp;contact
-Electro Shot|Electric|Special|130|100|9|true;charging
+Electro Shot|Electric|Special|130|100|9|true;charging;rain
 Encore|Normal|Status|0|100|2|true;lowpp
 Endeavor|Normal|Physical|0|100|3|true;direct;lowpp
 Endure|Normal|Status|0|100|2|true
@@ -148,7 +148,7 @@ Explosion|Normal|Physical|250|100|1|true;nocontact
 Extrasensory|Psychic|Special|80|100|3|true;prob10
 Extreme Speed|Normal|Physical|80|100|2|true;lowpp
 Facade|Normal|Physical|70|100|3|true
-Fake Out|Normal|Physical|40|100|3|true
+Fake Out|Normal|Physical|40|100|3|true;posprio
 Fake Tears|Dark|Status|0|100|3|false
 False Surrender|Dark|Physical|80|100|8|true
 Feather Dance|Flying|Status|0|100|3|true
@@ -226,7 +226,7 @@ Hone Claws|Dark|Status|0|100|5|true;physical
 Horn Leech|Grass|Physical|75|100|5|true;triage
 Hurricane|Flying|Special|110|70|5|true;rain;prob30
 Hydro Pump|Water|Special|110|80|1|true;lowpp
-Hydro Steam|Water|Special|80|100|9|true
+Hydro Steam|Water|Special|80|100|9|true;sun
 Hyper Drill|Normal|Physical|100|100|9|true;lowpp
 Hyper Fang|Normal|Physical|80|90|1|true;biting;prob10
 Hyper Voice|Normal|Special|90|100|3|true;sound

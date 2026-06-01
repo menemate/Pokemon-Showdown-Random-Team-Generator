@@ -31,7 +31,7 @@ Dancer|balance|7|true
 Dark Aura|offence|6|true;dark;teradark;type;doubles
 Dauntless Shield|defence|8|true
 Defiant|physical|5|true
-Delta Stream|weakness|6|true;teraflying;doubles
+Delta Stream|balance|6|true;teraflying;doubles
 Desolate Land|balance|6|true;terafire;fire;nowater;type;doubles;weather
 Download|offence|4|true
 Dragonize|offence|9|true;normal;teradragon;type
@@ -133,6 +133,7 @@ Punk Rock|special|8|true;sound
 Pure Power|physical|3|true
 Purifying Salt|balance|9|true;teraghost;terapsychic
 Quark Drive|balance|9|true;booster
+Queenly Majesty|balance|7|true;doubles
 Quick Draw|speed|8|true
 Quick Feet|speed|4|true;toxicorb85
 Rain Dish|heal|3|true
@@ -179,7 +180,7 @@ Steam Engine|speed|8|true;terawater;teradragon
 Stench|balance|3|true
 Sticky Hold|balance|3|true
 Storm Drain|special|4|true;teraground;terarock;terafire;doubles
-Strong Jaw|offence|6|true;biting
+Strong Jaw|physical|6|true;biting
 Sturdy|balance|3|true
 Suction Cups|balance|3|true
 Super Luck|offence|4|true;crit
