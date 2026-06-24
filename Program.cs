@@ -118,12 +118,12 @@ public class PokemonGenerator
 
 		//	Give pokemon a level.
 		//	Calculation is (levelStart + Math.Min(255, Math.Round((1 - (double)(randomPokemon.bst - levelMinBST) / (levelMaxBST - levelMinBST))  * levelMult)))
-		bool useLevels				= false;		//	Enable different levels per pokemon.
+		bool useLevels				= false;			//	Enable different levels per pokemon.
 		int leveledPokemons			= 12;			//	How many pokemons have a level, if the value is 0, only the first pokemon has a level.
-		int levelStart				= 100;			//	Minimum possible level of a pokemon.
+		int levelStart				= 45;			//	Minimum possible level of a pokemon.
 		int levelMinBST				= 400;			//	Lowest BST to compare.
 		int levelMaxBST				= 720;			//	Highest BST to compare.
-		double levelMult			= 24;			//	Pokemon from Lowest to Highest BST range within levelStart and levelStart + levelMult
+		double levelMult			= 10;			//	Pokemon from Lowest to Highest BST range within levelStart and levelStart + levelMult
 
 		//	Filter teams to make sure they use only certain pokemon, abilities or moves
 		bool restrictMons			= false;	//	When true, uses includeMonTypes, includeMonGens, includeMonBST and includeMonName as filters.
@@ -160,7 +160,7 @@ public class PokemonGenerator
 		int[] includeMonBST	= {0, 1000};	//	Minimum and maximum Base Stat Total to include in the team, min and max values are included.
 
 /* "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" */
-		List<string> includeMonName		= new List<string>{ "zoroark", "zygarde-1", "arceus", "silvally"};
+		List<string> includeMonName		= new List<string>{ "eiscue"};
 		List<string> includeAbilName	= new List<string>{ "Competitive", "Thermal Exchange", "Flame Body", "As One (Glastrier)", "Galvanize", "Guts", "Imposter", "Marvel Scale", "Queenly", "Quick Draw", "Serene", "Super Luck", "Triage", "Water V"};
 		List<string> includeMoveName	= new List<string>{ "u", "v", "z"};
 
@@ -1197,6 +1197,9 @@ public class PokemonGenerator
 				if(abil.props.Contains("nodragon") && (randomPokemon.type1 == Type.Dragon || randomPokemon.type2 == Type.Dragon))
 					abil.rate = 0;
 
+				if (abil.props.Contains(randomPokemon.name))
+					abil.rate = 5000;
+
 				//	Give Shedinja only these abilities.
 				if(randomPokemon.name == "shedinja" && abil.name != "Wonder Guard" && abil.name != "Sturdy")
 					abil.rate = 0;
@@ -1206,6 +1209,12 @@ public class PokemonGenerator
 
 			if (replaceAbility != "nothing")
 				randomAbility = abilities.First(ab => ab.name == replaceAbility);
+			
+			if(randomAbility.name == "Ice Face")
+			{
+				randomPokemon.stats = "phys";
+				randomPokemon.moreInfo = "fast";
+			}
 
 			// Assign rate for every item
 			foreach(Item item in items)
@@ -1313,7 +1322,7 @@ public class PokemonGenerator
 				if(randomAbility.props.Contains("stay") && (item.name == "Eject Pack" || item.name == "Eject Button"))
 					item.rate = 0;
 				//	Removes Air Balloon for Flying and Levitate pokemon.
-				if((randomPokemon.type1 == Type.Flying || randomPokemon.type2 == Type.Flying || randomAbility.name == "Levitate") && item.name == "Air Balloon")
+				if((randomPokemon.type1 == Type.Flying || randomPokemon.type2 == Type.Flying || randomAbility.name == "Levitate" || randomAbility.name == "Eelevate") && item.name == "Air Balloon")
 					item.rate *= 0;
 				//	Remove speed items on slow pokemon.
 				if(randomPokemon.moreInfo == "slow" && item.stats == "speed" && item.name != "Quick Claw" && item.name != "Custap Berry")
@@ -2440,6 +2449,22 @@ public class PokemonGenerator
 							move.rate *= 0.5;
 					}
 
+					//	Moves boosted by specific signature abilities.
+					if (randomAbility.name == "Stance Change" && move.name == "King's Shield")
+						move.rate *= 500;
+					if (randomAbility.name == "Gulp Missile" && move.name == "Surf")
+						move.rate *= 500;
+					if (randomAbility.name == "Poison Puppeteer")
+					{
+						if(move.name == "Toxic" || move.name == "Malignant Chain" || move.name == "Barb Barrage" || move.name == "Mortal Spin" || move.name == "Poison Fang")
+						{
+							if(pickedMoves.Any(m => m.name == "Toxic" || m.name == "Malignant Chain" || m.name == "Barb Barrage" || m.name == "Mortal Spin" || m.name == "Poison Fang"))
+								move.rate = 0;
+							else
+								move.rate *= 500;
+						}
+					}
+
 					//	Moves not for Shedinja.
 					if(randomPokemon.name == "shedinja")
 					{
@@ -2859,11 +2884,16 @@ public class PokemonGenerator
 						{} */
 					}
 					break;
-				case "Figy Berry":
-				case "Mago Berry":
 				case "Wiki Berry":
 					{
-						if(nature == "Modest" || nature == "Timid" || nature == "Calm" || nature == "Bold"|| nature == "Jolly" || nature == "Brave")
+						if(nature == "Adamant" || nature == "Jolly" || nature == "Careful" || nature == "Impish")
+							nature = "Naive";
+					}
+					break;
+				case "Figy Berry":
+				case "Mago Berry":
+					{
+						if(nature == "Modest" || nature == "Timid" || nature == "Calm" || nature == "Bold"|| nature == "Jolly" || nature == "Brave" )
 							nature = "Hasty";
 					}
 					break;

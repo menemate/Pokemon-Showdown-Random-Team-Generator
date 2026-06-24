@@ -391,7 +391,7 @@ nidoking|Poison|Ground|mixed|1|505|true|none
 nidoqueen|Poison|Ground|any|1|505|true|none
 nihilego|Rock|Poison|mixed|7|570|true|none
 ninetales|Fire|Nothing|mixed|1|505|true|none
-ninetales-alola|Ice|Fairy|mixed|7|505|true|none
+ninetales-alola|Ice|Fairy|spec|7|505|true|none
 ninjask|Bug|Flying|phys|3|456|true|fast
 noctowl|Normal|Flying|spec|2|452|true|none
 noivern|Flying|Dragon|spec|6|535|true|none

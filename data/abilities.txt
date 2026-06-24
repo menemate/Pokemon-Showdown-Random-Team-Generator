@@ -40,6 +40,7 @@ Drought|balance|3|true;terafire;fire;heatrock25;type;nowater;doubles;weather
 Dry Skin|heal|4|true
 Earth Eater|heal|9|true;terarock;terafire;teraelectric;terapoison;terasteel
 Effect Spore|status|3|true
+Eelevate|offence|9|true;terarock;terafire;teraelectric;terapoison;terasteel
 Electric Surge|offence|7|true;teraelectric;electric;seedelectric;type;doubles
 Fairy Aura|offence|6|true;fairy;terafairy;type;doubles
 Filter|weakness|4|true
@@ -234,3 +235,10 @@ Receiver|balance|7|false;doubles
 Steely Spirit|offence|8|false;doubles;steel;terasteel
 Symbiosis|balance|7|false;doubles
 Telepathy|balance|5|false;doubles
+Stance Change|balance|6|false;aegislash
+Power Construct|balance|7|false;zygarde-10%;zygarde
+Disguise|balance|7|false;mimikyu
+Gulp Missile|balance|8|false;cramorant
+Ice Face|balance|8|false;eiscue
+Tera Shell|balance|9|false;Terapagos-Terastal
+Poison Puppeteer|balance|9|false;
